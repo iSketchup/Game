@@ -46,7 +46,7 @@ def events():
 
 class Player():
     def __init__(self):
-        self.player = pygame.rect.Rect(0,0,100,100)
+        self.player = pygame.rect.Rect(0, 0, 100, 100)
         self.color = "pink"
 
     def moovement(self, speedx, speedy):

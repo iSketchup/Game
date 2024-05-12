@@ -19,8 +19,6 @@ def main():
 				pygame.quit()
 				sys.exit()
 
-			running = moovement()
-
 
 
 		pygame.display.update()
