@@ -2,21 +2,26 @@ import sys
 
 import pygame
 
-pygame.init()
 
-screen = pygame.display.set_mode((100, 199))
-pygame.display.set_caption('HOLADIEWALDFEE')
-clock = pygame.time.Clock()
+def main():
+	pygame.init()
 
-running = True
+	screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+	pygame.display.set_caption('HOLADIEWALDFEE')
+	clock = pygame.time.Clock()
 
-while running:
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			pygame.quit()
-			sys.exit()
+	running = True
+
+	while running:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				sys.exit()
 
 
 
-	pygame.display.update()
-	clock.tick(60)
+		pygame.display.update()
+		clock.tick(60)
+
+if __name__ == '__main__':
+    main()
