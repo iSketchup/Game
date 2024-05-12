@@ -20,7 +20,8 @@ def joysticker():
 def events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            sys.exit
+            pygame.quit()
+            sys.exit()
         if event.type == pygame.JOYBUTTONDOWN:
 
             # Jostick(0) nur weil ich gerade nur eine controller habe
