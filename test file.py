@@ -8,6 +8,15 @@ joysticks = []
 for x in range(pygame.joystick.get_count()):
     joystick = pygame.joystick.Joystick(x)
     joysticks.append(joystick)
+
+if len(joysticks)<1:
+    print("No controllers Connected")
+    sys.exit()
+else:
+    print(f"Controllers Connected: {joysticks}")
+
+
+
 print(joysticks)
 
 def joysticker():
@@ -39,6 +48,9 @@ def events():
             elif pygame.joystick.Joystick(0).get_button(3):
                 player.colorer("pink4")
             print(event)
+
+        elif event.type == pygame.K_w:
+
 
         if event.type == pygame.JOYAXISMOTION:
             print(event)
