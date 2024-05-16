@@ -11,7 +11,7 @@ def main():
 	running = True
 
 	#Player init
-	player = Player(3,3,33)
+	player = Player()
 
 	while running:
 		for event in pygame.event.get():
