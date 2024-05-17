@@ -19,7 +19,9 @@ def main():
 				pygame.quit()
 				sys.exit()
 
-
+			if event.type == pygame.JOYDEVICEADDED:
+				stick = pygame.joystick.Joystick(event.device_index)
+				sticks.append(stick)
 
 		pygame.display.update()
 		clock.tick(60)
