@@ -1,5 +1,6 @@
 import sys, pygame
 from player import Player
+from spritesheet import Spritesheet
 
 def main():
 
@@ -17,6 +18,9 @@ def main():
 	player = Player(3)
 
 	while running:
+
+		screen.fill('white')
+
 
 		player.displayer(screen)
 
