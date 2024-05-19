@@ -5,25 +5,20 @@ class Player():
 
 
     def __init__(self, device_index):
+
         self.player = pygame.rect.Rect(0, 0, 100, 100)
         self.color = "pink"
         self.device_index = device_index
-        #self.moovex = round(pygame.joystick.Joystick(0).get_axis(0))
-        #self.moovey = round(pygame.joystick.Joystick(0).get_axis(1))
-        
-        self.speedx = 10
-        self.speedy = 10
+
 
         self.joystick = pygame.joystick.Joystick(device_index)
 
 
     def moovement(self):
 
-        if self.joystick:
-            self.moovex = round(self.joystick.get_axis(0) * self.speedx)
-            self.moovey = round(self.joystick.get_axis(1) * self.speedy)
-
-            self.player.move_ip(self.moovex, self.moovey)
+        self.x_moovement = round(pygame.joystick.Joystick(0).get_axis(0)) * 10
+        self.y_moovement = round(pygame.joystick.Joystick(0).get_axis(1)) * 10
+        self.player.move_ip(self.x_moovement, self.y_moovement)
 
 
     def displayer(self, screen):

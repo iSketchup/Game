@@ -28,9 +28,6 @@ def main():
 
 		screen.fill('white')
 
-
-	# player.displayer(screen)
-
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				pygame.quit()
@@ -46,18 +43,9 @@ def main():
 				remove = pygame.joystick.Joystick(event.device_index)
 				controllers.remove(remove)
 
-			for controller in controllers:
-				#moovement left and right
-				if controller.get_axis(0):
-					player.moovement()
-				# up and down
-				elif controller.get_axis(1):
-					player.moovement()
-
-
 
 		heart(screen)
-
+		player.moovement()
 		player.displayer(screen)
 
 
