@@ -34,7 +34,6 @@ def main():
 				sys.exit()
 
 
-
 			if event.type == pygame.JOYDEVICEADDED:
 				controller = pygame.joystick.Joystick(event.device_index)
 				controllers.append(controller)
@@ -45,7 +44,8 @@ def main():
 
 
 		heart(screen)
-		player.moovement()
+		player.moovement_controller()
+		player.moovement_keys()
 		player.displayer(screen)
 
 
