@@ -23,22 +23,28 @@ def main():
 	controllers = []
 
 	# Player init
-	player = Player((320, 320))
+	player = Player(0)
 	while running:
 
 		screen.fill('white')
 
 
-		#player.displayer(screen)
+	# player.displayer(screen)
 
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				pygame.quit()
 				sys.exit()
 
+
+
 			if event.type == pygame.JOYDEVICEADDED:
 				controller = pygame.joystick.Joystick(event.device_index)
 				controllers.append(controller)
+
+			if event.type == pygame.JOYDEVICEREMOVED:
+				remove = pygame.joystick.Joystick(event.device_index)
+				controllers.remove(remove)
 
 			for controller in controllers:
 				#moovement left and right
@@ -49,7 +55,12 @@ def main():
 					player.moovement()
 
 
+
 		heart(screen)
+
+		player.displayer(screen)
+
+
 
 		pygame.display.update()
 		clock.tick(60)
