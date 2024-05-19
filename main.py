@@ -5,8 +5,7 @@ from spritesheet import Spritesheet
 
 
 def heart(screen):
-	def heart():
-		heart = Spritesheet('Attachments/UI/heart.png', 1234)
+		heart = Spritesheet('Attachments/UI/heart.png', (320, 320))
 
 		heart.draw(screen)
 
@@ -24,14 +23,13 @@ def main():
 	controllers = []
 
 	# Player init
-	player = Player(3)
-
+	player = Player((320, 320))
 	while running:
 
 		screen.fill('white')
 
 
-		player.displayer(screen)
+		#player.displayer(screen)
 
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -51,7 +49,7 @@ def main():
 					player.moovement()
 
 
-			heart(screen)
+		heart(screen)
 
 		pygame.display.update()
 		clock.tick(60)
