@@ -1,7 +1,7 @@
 import pygame
 
 
-class Spritesheet(pygame.sprite.Sprite):
+class Spritesheet():
 	def __init__(self, image_root, measurments):
 		self.image = pygame.image.load(image_root)
 		self.image = self.image.convert()

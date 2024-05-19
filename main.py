@@ -2,6 +2,15 @@ import sys, pygame
 from player import Player
 from spritesheet import Spritesheet
 
+
+
+def heart(screen):
+	def heart():
+		heart = Spritesheet('Attachments/UI/heart.png', 1234)
+
+		heart.draw(screen)
+
+
 def main():
 
 	pygame.init()
@@ -36,13 +45,13 @@ def main():
 			for controller in controllers:
 				#moovement left and right
 				if controller.get_axis(0):
-					Player.moovement()
+					player.moovement()
 				# up and down
 				elif controller.get_axis(1):
-					Player.moovement()
+					player.moovement()
 
 
-
+			heart(screen)
 
 		pygame.display.update()
 		clock.tick(60)
