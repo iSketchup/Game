@@ -5,9 +5,8 @@ from spritesheet import Spritesheet
 
 
 def heart(screen):
-        heart = Spritesheet('Attachments/UI/heart.png', (320, 320))
-
-        heart.draw(screen)
+    heart = Spritesheet('Attachments/UI/heart.png', (320, 320))
+    heart.draw(screen)
 
 
 def main():
@@ -22,7 +21,9 @@ def main():
     #cotroler zeug
     controllers = []
 
-    # Player init
+    colors = ['pink', 'red', 'blue', 'yellow']
+    col_num = 0
+
     while running:
 
         screen.fill('white')
@@ -34,32 +35,27 @@ def main():
 
 
             if event.type == pygame.JOYDEVICEADDED:
-                controller = Player(event.device_index, 'pink')
+                controller = Player(event.device_index, colors[col_num % 4])
                 controllers.append(controller)
+                col_num += 1
 
 
         try:
-            i = 0
             for controller in controllers:
-                print(i)
+
                 print(controller.name)
                 controller.displayer(screen)
                 controller.moovement_controller()
-                i+=1
-        except FileExistsError:
-            print('e')
-
+        except:
+            print('no controller connected')
 
         print(controllers)
 
-
         heart(screen)
-
-
-
 
         pygame.display.update()
         clock.tick(60)
+
 
 if __name__ == '__main__':
     main()
