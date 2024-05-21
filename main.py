@@ -2,8 +2,6 @@ import sys, pygame
 from player import Player
 from spritesheet import Spritesheet
 
-
-
 def heart(screen):
 		heart = Spritesheet('Attachments/UI/heart.png', (320, 320))
 
@@ -34,6 +32,7 @@ def main():
 				sys.exit()
 
 
+
 			if event.type == pygame.JOYDEVICEADDED:
 				controller = pygame.joystick.Joystick(event.device_index)
 				controllers.append(controller)
@@ -41,6 +40,8 @@ def main():
 			if event.type == pygame.JOYDEVICEREMOVED:
 				remove = pygame.joystick.Joystick(event.device_index)
 				controllers.remove(remove)
+
+			print(controllers)
 
 
 		heart(screen)
