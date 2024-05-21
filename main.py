@@ -5,53 +5,61 @@ from spritesheet import Spritesheet
 
 
 def heart(screen):
-		heart = Spritesheet('Attachments/UI/heart.png', (320, 320))
+        heart = Spritesheet('Attachments/UI/heart.png', (320, 320))
 
-		heart.draw(screen)
+        heart.draw(screen)
 
 
 def main():
 
-	pygame.init()
+    pygame.init()
 
-	screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-	pygame.display.set_caption("1 vs 1")
-	clock = pygame.time.Clock()
-	running = True
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    pygame.display.set_caption("1 vs 1")
+    clock = pygame.time.Clock()
+    running = True
 
-	#cotroler zeug
-	controllers = []
+    #cotroler zeug
+    controllers = []
 
-	# Player init
-	player = Player(0)
-	while running:
+    # Player init
+    while running:
 
-		screen.fill('white')
+        screen.fill('white')
 
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				pygame.quit()
-				sys.exit()
-
-
-			if event.type == pygame.JOYDEVICEADDED:
-				controller = pygame.joystick.Joystick(event.device_index)
-				controllers.append(controller)
-
-			if event.type == pygame.JOYDEVICEREMOVED:
-				remove = pygame.joystick.Joystick(event.device_index)
-				controllers.remove(remove)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
 
-		heart(screen)
-		player.moovement_controller()
-		player.moovement_keys()
-		player.displayer(screen)
+            if event.type == pygame.JOYDEVICEADDED:
+                controller = Player(event.device_index, 'pink')
+                controllers.append(controller)
+
+
+        try:
+            i = 0
+            for controller in controllers:
+                print(i)
+                print(controller.name)
+                controller.displayer(screen)
+                controller.moovement_controller()
+                i+=1
+        except FileExistsError:
+            print('e')
+
+
+        print(controllers)
+
+
+        heart(screen)
 
 
 
-		pygame.display.update()
-		clock.tick(60)
+
+        pygame.display.update()
+        clock.tick(60)
 
 if __name__ == '__main__':
     main()
