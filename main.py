@@ -13,7 +13,7 @@ def main():
 
     pygame.init()
 
-    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((700, 567))
     map.seba()
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
@@ -46,7 +46,7 @@ def main():
 
                 print(controller.name)
                 controller.displayer(screen)
-                controller.moovement_controller()
+
         except:
             print('no controller connected')
 

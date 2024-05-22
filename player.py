@@ -1,11 +1,7 @@
 import pygame
 
 class Player():
-
-
-
     def __init__(self, device_index, color):
-
         self.player_rect = pygame.rect.Rect(0, 0, 100, 100)
         self.color = color
 
@@ -13,14 +9,29 @@ class Player():
         self.device_index = device_index
         self.name = self.joystick.get_name()
 
-        # bewegungen Controller
-    def moovement_controller(self):
 
-        self.x_moovement = round(self.joystick.get_axis(0)) * 10
-        self.y_moovement = round(self.joystick.get_axis(1)) * 10
-        self.player_rect.move_ip(self.x_moovement, self.y_moovement)
+        self.move = pygame.math.Vector2(0,0)
+        self.speed = 10
+
+
+    def x_movement(self):
+
+        self.move.x = self.joystick.get_axis(0) * self.speed
+
+        if abs(self.move.x) < 0.01:
+            self.move.x = 0
+
+    def jump(self):
+        self.move.y = self.joystick.get_axis(1) * self.speed
+
+        if abs(self.move.y) < 0.01:
+            self.move.y = 0
 
     def displayer(self, screen):
+
+        self.x_movement()
+        self.jump()
+        self.player_rect.move_ip(self.move)
 
         pygame.draw.rect(screen, self.color, self.player_rect)
 
