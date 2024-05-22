@@ -13,7 +13,7 @@ def main():
 
     pygame.init()
 
-    screen = pygame.display.set_mode((700, 567))
+    screen = pygame.display.set_mode((0, 0))
     map.load_pygame(screen)
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
