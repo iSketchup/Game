@@ -21,6 +21,9 @@ def main():
     clock = pygame.time.Clock()
     running = True
 
+    screen_width = screen.get_width()
+    screen_height = screen.get_height()
+
     #cotroler zeug
     controllers = []
 
