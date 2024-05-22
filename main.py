@@ -1,7 +1,7 @@
 import sys, pygame
 from player import Player
 from spritesheet import Spritesheet
-
+import map
 
 
 def heart(screen):
@@ -14,6 +14,7 @@ def main():
     pygame.init()
 
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    map.seba()
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
     running = True
