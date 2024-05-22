@@ -14,7 +14,7 @@ def main():
     pygame.init()
 
     screen = pygame.display.set_mode((700, 567))
-    map.seba()
+    map.load_pygame(screen)
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
     running = True
