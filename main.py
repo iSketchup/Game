@@ -14,7 +14,9 @@ def main():
     pygame.init()
 
     screen = pygame.display.set_mode((0, 0))
-    map.load_pygame(screen)
+
+    tmx_data, tilewidth, tileheight = map.loader()
+
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
     running = True
@@ -27,7 +29,7 @@ def main():
 
     while running:
 
-        screen.fill('white')
+        map.drawer(tmx_data, tilewidth, tileheight, screen)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
