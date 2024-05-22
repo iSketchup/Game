@@ -15,14 +15,16 @@ def main():
 
     screen = pygame.display.set_mode((0, 0))
 
+    screen_width = screen.get_width()
+    screen_height = screen.get_height()
+
     tmx_data, tilewidth, tileheight = map.loader()
 
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
     running = True
 
-    screen_width = screen.get_width()
-    screen_height = screen.get_height()
+
 
     #cotroler zeug
     controllers = []

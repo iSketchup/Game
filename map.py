@@ -19,10 +19,13 @@ def drawer(tmx_data, tilewidth, tileheight, screen):
             # x und y für die positionen
             for x, y, tile in layer.tiles():
                 if(tile):
-                    screen.blit(tile, [x*tilewidth, y*tileheight])
+                    screen.blit(tile, [x * tilewidth, y * tileheight])
 
         else:
             continue
+
+
+
 
 
 
