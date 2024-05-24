@@ -18,6 +18,9 @@ def main():
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
+    print(screen_height)
+    print(screen_width)
+
     tmx_data, tilewidth, tileheight = map.loader()
 
     pygame.display.set_caption("1 vs 1")
@@ -34,7 +37,7 @@ def main():
 
     while running:
 
-        map.drawer(tmx_data, tilewidth, tileheight, screen)
+        map.drawer(tmx_data, tilewidth, tileheight, screen, screen_width, screen_height)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -51,13 +54,10 @@ def main():
         try:
             for controller in controllers:
 
-                print(controller.name)
                 controller.displayer(screen)
 
         except:
             print('no controller connected')
-
-        print(controllers)
 
         heart(screen)
 
