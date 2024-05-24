@@ -18,8 +18,7 @@ def main():
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    print(screen_height)
-    print(screen_width)
+
 
     tmx_data, tilewidth, tileheight = map.loader()
 
@@ -37,7 +36,8 @@ def main():
 
     while running:
 
-        map.drawer(tmx_data, tilewidth, tileheight, screen, screen_width, screen_height)
+        screen.fill('white')
+        #map.drawer(tmx_data, tilewidth, tileheight, screen, screen_width, screen_height)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -46,10 +46,12 @@ def main():
 
 
             if event.type == pygame.JOYDEVICEADDED:
-                controller = Player(event.device_index, colors[col_num % 4])
+                controller = Player(event.device_index, colors[col_num % 4], controllers)
                 controllers.append(controller)
                 col_num += 1
 
+        for controller in controllers:
+            print(controller.device_index)
 
         try:
             for controller in controllers:
