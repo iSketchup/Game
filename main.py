@@ -4,6 +4,8 @@ from spritesheet import Spritesheet
 import map
 
 
+
+
 def heart(screen):
     heart = Spritesheet('Attachments/UI/heart.png', (320, 320))
     heart.draw(screen)
@@ -20,7 +22,7 @@ def main():
 
 
 
-    tmx_data, tilewidth, tileheight = map.loader()
+    map_list, map_data = map.map_lister('Attachments/map/tilesets_and_maps/darcos_feuer_freudenhaus.tmx')
 
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
@@ -36,8 +38,7 @@ def main():
 
     while running:
 
-        screen.fill('white')
-        #map.drawer(tmx_data, tilewidth, tileheight, screen, screen_width, screen_height)
+        map.map_drawer(screen, map_list, map_data, screen_width, screen_height)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

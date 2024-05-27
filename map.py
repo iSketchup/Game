@@ -3,31 +3,29 @@ import pytmx
 from pytmx.util_pygame import load_pygame
 pygame.init()
 
-def loader():
-    tmx_data = load_pygame("Attachments/map/tilesets_and_maps/darcos_feuer_freudenhaus.tmx")
-    tilewidth = tmx_data.tilewidth
-    tileheight = tmx_data.tileheight
+def map_lister(tmxfile):
+#
+#   this takes every tile that is a instance(that means it will have to be drawn) and puts it in a list
+#   every row has its own list inside of the map list
+
+    map_data = pytmx.load_pygame(tmxfile)
+    map_list = []
+    for row in map_data.visible_layers:
+        if isinstance(row, pytmx.TiledTileLayer):
+            map_list.append(row)
+
+    return map_list, map_data
+
+def map_drawer(surface, map_list, map_data, inputw, inputh):
+    upsizefaktorw, upsizefaktorh = surface.get_width() / 256, surface.get_height() / 192
 
 
-    return tmx_data, tilewidth, tileheight
-
-def drawer(tmx_data, tilewidth, tileheight, screen, screen_width, screen_height):
-
-    upsizerwidth = screen_width / 50 * 24
-    upsizerheight = screen_height / 25 * 24
-    for layer in tmx_data.layers:
-        #is instace returned entweder True oder False
-        if isinstance(layer, pytmx.TiledTileLayer):
-            # x und y für die positionen
-            for x, y, tile in layer.tiles():
-                tile = pygame.transform.scale(tile, (tilewidth * upsizerwidth, tileheight * upsizerheight))
-                if(tile):
-                    screen.blit(tile, [x * tilewidth, y * tileheight])
-
-        else:
-            continue
-
-
+    for layer in map_list:
+        for x, y, gid in layer:
+            tile =  map_data.get_tile_image_by_gid(gid)
+            if tile:
+                tile = pygame.transform.scale(tile, (map_data.tilewidth * upsizefaktorw, map_data.tileheight * upsizefaktorh))
+                surface.blit(tile, (x * upsizefaktorw * map_data.tilewidth + inputw, y * upsizefaktorh * map_data.tileheight + inputh))
 
 
 
