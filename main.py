@@ -62,8 +62,6 @@ def main():
         except:
             print('no controller connected')
 
-        heart(screen)
-
         pygame.display.update()
         clock.tick(60)
 
