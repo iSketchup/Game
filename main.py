@@ -38,7 +38,7 @@ def main():
 
     while running:
 
-        map.map_drawer(screen, map_list, map_data, screen_width, screen_height)
+        map.map_drawer(screen, map_list, map_data)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

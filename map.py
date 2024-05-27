@@ -1,7 +1,6 @@
 import pygame
 import pytmx
 def map_lister(tmxfile):
-#
 #   this takes every tile that is a instance(that means it will have to be drawn) and puts it in a list
 #   every row has its own list inside of the map list
 
@@ -13,7 +12,8 @@ def map_lister(tmxfile):
 
     return map_list, map_data
 
-def map_drawer(surface, map_list, map_data, inputw, inputh):
+
+def map_drawer(surface, map_list, map_data):
     upsizefaktorw, upsizefaktorh = surface.get_width() / (50*24), surface.get_height() / (25*24)
 
     for layer in map_list:
