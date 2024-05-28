@@ -4,24 +4,15 @@ class Player():
     def __init__(self, device_index, color, controllers):
 
         self.device_index = device_index
-        self.is_initialized = False
+        self.player_rect = pygame.rect.Rect(0, 0, 100, 100)
+        self.color = color
 
-        for controller in controllers:
-            if (controller.device_index == self.device_index):
-                self = controller
-                self.is_initialized = True
-
-
-            if True != self.is_initialized:
-                self.player_rect = pygame.rect.Rect(0, 0, 100, 100)
-                self.color = color
-
-                self.joystick = pygame.joystick.Joystick(device_index)
-                self.name = self.joystick.get_name()
+        self.joystick = pygame.joystick.Joystick(device_index)
+        self.name = self.joystick.get_name()
 
 
-                self.move = pygame.math.Vector2(0,0)
-                self.speed = 10
+        self.move = pygame.math.Vector2(0,0)
+        self.speed = 10
 
 
     def x_movement(self):
