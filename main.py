@@ -22,7 +22,7 @@ def main():
 
 
 
-    map_list, map_data = map.map_lister('Attachments/map/tilesets_and_maps/darcos_feuer_freudenhaus.tmx')
+    map_list, map_data, floor_tiles= map.map_lister('Attachments/map/tilesets_and_maps/darcos_feuer_freudenhaus.tmx')
 
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
@@ -40,6 +40,7 @@ def main():
 
         map.map_drawer(screen, map_list, map_data)
 
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -51,13 +52,16 @@ def main():
                 controllers.append(controller)
                 col_num += 1
 
+
+
+
         for controller in controllers:
             print(controller.device_index)
 
         try:
             for controller in controllers:
 
-                controller.displayer(screen)
+                controller.displayer(screen, collisions_layer)
 
         except:
             print('no controller connected')
