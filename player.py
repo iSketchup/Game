@@ -1,10 +1,10 @@
 import pygame
 
 class Player():
-    def __init__(self, device_index, color, controllers):
+    def __init__(self, device_index, color, rect):
 
         self.device_index = device_index
-        self.player_rect = pygame.rect.Rect(0, 0, 100, 100)
+        self.player_rect = rect
         self.color = color
 
         self.joystick = pygame.joystick.Joystick(device_index)
@@ -30,18 +30,19 @@ class Player():
         if abs(self.move.y) < 0.01:
             self.move.y = 0
 
-    def displayer(self, screen, collisions_layer):
+    def displayer(self, screen):
 
         self.x_movement()
         self.jump()
         self.player_rect.move_ip(self.move)
-
-        for rect in collisions_layer:
-            if self.player_rect.colliderect(rect):
-                print("es collidiert mit boden")
-
-
         pygame.draw.rect(screen, self.color, self.player_rect)
+
+#        for rect in collisions_layer:
+ #           if self.player_rect.colliderect(rect):
+  #              print("es collidiert mit boden")
+#
+#
+
 
 
 

@@ -36,6 +36,10 @@ def main():
     colors = ['pink', 'red', 'blue', 'yellow']
     col_num = 0
 
+    player1_rect = pygame.Rect(0,0,100,100)
+    player2_rect = pygame.Rect(0,40,100,100)
+    rect = player1_rect
+
     while running:
 
         map.map_drawer(screen, map_list, map_data)
@@ -48,20 +52,27 @@ def main():
 
 
             if event.type == pygame.JOYDEVICEADDED:
-                controller = Player(event.device_index, colors[col_num % 4], controllers)
-                controllers.append(controller)
+                for controller in controllers:
+                    if len(controllers) % 2 == 0:
+                        rect = player1_rect
+                    else:
+                        rect = player2_rect
+
+                print('here')
+                stick = Player(event.device_index, colors[col_num % 4], rect)
+                controllers.append(stick)
                 col_num += 1
 
 
 
 
         for controller in controllers:
+            print('sad')
             print(controller.device_index)
 
         try:
             for controller in controllers:
-
-                controller.displayer(screen, collisions_layer)
+                controller.displayer(screen)
 
         except:
             print('no controller connected')

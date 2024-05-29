@@ -10,9 +10,7 @@ def map_lister(tmxfile):
     for row in map_data.visible_layers:
         if isinstance(row, pytmx.TiledTileLayer):
             map_list.append(row)
-            if row.name == 'floor':
-                for tile in row:
-                    floor_tiles.append(tile.get_rect())
+#            if row.name == 'floor':
     return map_list, map_data, floor_tiles
 
 
