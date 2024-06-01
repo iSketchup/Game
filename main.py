@@ -22,7 +22,7 @@ def main():
 
 
 
-    map_list, map_data, floor_tiles= map.map_lister('Attachments/map/tilesets_and_maps/darcos_feuer_freudenhaus.tmx')
+    map_list, map_data, floor_tiles = map.map_lister('Attachments/map/tilesets_and_maps/darcos_feuer_freudenhaus.tmx')
 
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
@@ -36,8 +36,8 @@ def main():
     colors = ['pink', 'red', 'blue', 'yellow']
     col_num = 0
 
-    player1_rect = pygame.Rect(0,0,100,100)
-    player2_rect = pygame.Rect(0,40,100,100)
+    player1_rect = pygame.Rect(0, 0, 100, 100)
+    player2_rect = pygame.Rect(0, 40, 100, 100)
     rect = player1_rect
 
     while running:
