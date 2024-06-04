@@ -10,7 +10,6 @@ def map_lister(tmxfile):
     for row in map_data.visible_layers:
         if isinstance(row, pytmx.TiledTileLayer):
             map_list.append(row)
-#            if row.name == 'floor':
     return map_list, map_data, floor_tiles
 
 
@@ -23,6 +22,9 @@ def map_drawer(surface, map_list, map_data, measure):
             if tile:
                 tile = pygame.transform.scale(tile, (measure * upsizefaktorw + 1, measure * upsizefaktorh + 1))
                 surface.blit(tile, (x * upsizefaktorw * map_data.tilewidth, y * upsizefaktorh * map_data.tileheight))
+
+    print(upsizefaktorw, upsizefaktorh)
+    return upsizefaktorh, upsizefaktorw
 
 
 

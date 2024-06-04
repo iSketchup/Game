@@ -25,10 +25,9 @@ class Player():
             self.move.x = 0
 
     def jump(self):
-        self.move.y = self.joystick.get_axis(1) * self.speed
+        pass
 
-        if abs(self.move.y) < 0.01:
-            self.move.y = 0
+
 
     def displayer(self, screen):
 
@@ -37,11 +36,6 @@ class Player():
         self.player_rect.move_ip(self.move)
         pygame.draw.rect(screen, self.color, self.player_rect)
 
-#        for rect in collisions_layer:
- #           if self.player_rect.colliderect(rect):
-  #              print("es collidiert mit boden")
-#
-#
 
 
 

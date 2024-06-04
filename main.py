@@ -23,6 +23,8 @@ def main():
 
 
     map_list, map_data, floor_tiles = map.map_lister('Attachments/map/tilesets_and_maps/new tilemap/mapabc.tmx')
+    upsizefaktorh, upsizefaktorw = map.map_drawer(screen, map_list, map_data, measure=16)
+
 
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
@@ -31,13 +33,15 @@ def main():
 
 
     #cotroler zeug
+
     controllers = []
 
     colors = ['pink', 'red', 'blue', 'yellow']
     col_num = 0
 
-    player1_rect = pygame.Rect(0, 0, 100, 100)
-    player2_rect = pygame.Rect(0, 40, 100, 100)
+    player1_rect = pygame.Rect(0, 320 * upsizefaktorh, 16 * upsizefaktorh, 16 * upsizefaktorw)
+
+    player2_rect = pygame.Rect(screen_width - 16 * upsizefaktorw, 320 * upsizefaktorh, 16 * upsizefaktorh, 16 * upsizefaktorw)
     rect = player1_rect
 
     while running:
