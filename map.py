@@ -14,14 +14,14 @@ def map_lister(tmxfile):
     return map_list, map_data, floor_tiles
 
 
-def map_drawer(surface, map_list, map_data):
-    upsizefaktorw, upsizefaktorh = surface.get_width() / (50*24), surface.get_height() / (25*24)
+def map_drawer(surface, map_list, map_data, measure):
+    upsizefaktorw, upsizefaktorh = surface.get_width() / (45*measure), surface.get_height() / (25 * measure)
 
     for layer in map_list:
         for x, y, gid in layer:
             tile = map_data.get_tile_image_by_gid(gid)
             if tile:
-                tile = pygame.transform.scale(tile, (24 * upsizefaktorw + 1, 24 * upsizefaktorh + 1))
+                tile = pygame.transform.scale(tile, (measure * upsizefaktorw + 1, measure * upsizefaktorh + 1))
                 surface.blit(tile, (x * upsizefaktorw * map_data.tilewidth, y * upsizefaktorh * map_data.tileheight))
 
 
