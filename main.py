@@ -42,7 +42,7 @@ def main():
 
     while running:
 
-        map.map_drawer(screen, map_list, map_data)
+        map.map_drawer(screen, map_list, map_data, 16)
 
 
         for event in pygame.event.get():
