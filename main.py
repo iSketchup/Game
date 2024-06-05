@@ -62,7 +62,6 @@ def main():
                     else:
                         rect = player2_rect
 
-                print('here')
                 stick = Player(event.device_index, colors[col_num % 4], rect)
                 controllers.append(stick)
                 col_num += 1
@@ -71,7 +70,6 @@ def main():
 
 
         for controller in controllers:
-            print('sad')
             print(controller.device_index)
 
         try:

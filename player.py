@@ -14,6 +14,9 @@ class Player():
         self.move = pygame.math.Vector2(0,0)
         self.speed = 10
 
+        self.ground = True
+        self.jumpheight = 10
+
 
 
 
@@ -25,16 +28,21 @@ class Player():
             self.move.x = 0
 
     def jump(self):
-        pass
-
-
+        #if A is pressed this returns True
+        if self.joystick.get_button(2):
+            if self.ground:
+                self.move.y = -self.jumpheight
+                self.ground = False
+        print(self.ground)
 
     def displayer(self, screen):
-
+        pygame.draw.rect(screen, self.color, self.player_rect)
+        self.move = (0, 0)
+        print(self.move)
         self.x_movement()
         self.jump()
+        print(self.move)
         self.player_rect.move_ip(self.move)
-        pygame.draw.rect(screen, self.color, self.player_rect)
 
 
 
