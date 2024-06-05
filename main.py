@@ -65,7 +65,6 @@ def main():
                 controllers.append(stick)
                 col_num += 1
 
-            if event.type == pygame.JOYDEVICEREMOVED
 
 
 
