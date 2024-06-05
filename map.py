@@ -23,7 +23,6 @@ def map_drawer(surface, map_list, map_data, measure):
                 tile = pygame.transform.scale(tile, (measure * upsizefaktorw + 1, measure * upsizefaktorh + 1))
                 surface.blit(tile, (x * upsizefaktorw * map_data.tilewidth, y * upsizefaktorh * map_data.tileheight))
 
-    print(upsizefaktorw, upsizefaktorh)
     return upsizefaktorh, upsizefaktorw
 
 

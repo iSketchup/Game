@@ -23,7 +23,7 @@ def main():
 
 
     map_list, map_data, floor_tiles = map.map_lister('Attachments/map/tilesets_and_maps/new tilemap/mapabc.tmx')
-    upsizefaktorh, upsizefaktorw = map.map_drawer(screen, map_list, map_data, measure=16)
+    upsizefaktorh, upsizefaktorw = map.map_drawer(screen, map_list, map_data, 16)
 
 
     pygame.display.set_caption("1 vs 1")
@@ -72,12 +72,12 @@ def main():
         for controller in controllers:
             print(controller.device_index)
 
-        try:
-            for controller in controllers:
-                controller.displayer(screen)
+ #       try:
+        for controller in controllers:
+            controller.displayer(screen)
 
-        except:
-            print('no controller connected')
+#        except:
+ #           print('no controller connected')
 
         pygame.display.update()
         clock.tick(60)
