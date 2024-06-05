@@ -1,11 +1,11 @@
 import pygame
 
 class Player():
-    def __init__(self, device_index, color, rect):
+    def __init__(self, device_index, rect):
 
         self.device_index = device_index
         self.player_rect = rect
-        self.color = color
+        self.color = 'blue'
 
         self.joystick = pygame.joystick.Joystick(device_index)
         self.name = self.joystick.get_name()
@@ -33,15 +33,13 @@ class Player():
             if self.ground:
                 self.move.y = -self.jumpheight
                 self.ground = False
-        print(self.ground)
 
     def displayer(self, screen):
         pygame.draw.rect(screen, self.color, self.player_rect)
-        self.move = (0, 0)
-        print(self.move)
+        self.move.x = 0
+        self.move.y = 0
         self.x_movement()
         self.jump()
-        print(self.move)
         self.player_rect.move_ip(self.move)
 
 

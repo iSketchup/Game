@@ -36,7 +36,6 @@ def main():
 
     controllers = []
 
-    colors = ['pink', 'red', 'blue', 'yellow']
     col_num = 0
 
     player1_rect = pygame.Rect(0, 320 * upsizefaktorh, 16 * upsizefaktorh, 16 * upsizefaktorw)
@@ -62,9 +61,11 @@ def main():
                     else:
                         rect = player2_rect
 
-                stick = Player(event.device_index, colors[col_num % 4], rect)
+                stick = Player(event.device_index, rect)
                 controllers.append(stick)
                 col_num += 1
+
+            if event.type == pygame.JOYDEVICEREMOVED
 
 
 
