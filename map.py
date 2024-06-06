@@ -31,10 +31,12 @@ def collider(map_data):
     floor = []
 
     for layer in map_data.visible_layers:
-        print(layer.name)
-
-
-
+        if layer.name == 'floor' and isinstance(layer, pytmx.TiledTileLayer):
+            for x, y, gid in layer:
+                tile_img = map_data.get_tile_image_by_gid(gid)
+                if tile_img:
+                    tile = tile_img.get_rect()
+                    floor.append(tile)
     return floor
 
 

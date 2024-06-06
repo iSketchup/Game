@@ -30,7 +30,7 @@ def main():
     clock = pygame.time.Clock()
     running = True
 
-    map.collider(map_data)
+    floor = map.collider(map_data)
 
     #cotroler zeug
 
