@@ -22,7 +22,7 @@ def main():
 
 
 
-    map_list, map_data, floor_tiles = map.map_lister('Attachments/map/tilesets_and_maps/new tilemap/mapabc.tmx')
+    map_list, map_data = map.map_lister('Attachments/map/tilesets_and_maps/new tilemap/mapabc.tmx')
     upsizefaktorh, upsizefaktorw = map.map_drawer(screen, map_list, map_data, 16)
 
 
@@ -30,7 +30,7 @@ def main():
     clock = pygame.time.Clock()
     running = True
 
-
+    map.collider(map_data)
 
     #cotroler zeug
 

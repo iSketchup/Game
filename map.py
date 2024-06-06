@@ -6,11 +6,11 @@ def map_lister(tmxfile):
 
     map_data = pytmx.load_pygame(tmxfile)
     map_list = []
-    floor_tiles = []
     for row in map_data.visible_layers:
         if isinstance(row, pytmx.TiledTileLayer):
             map_list.append(row)
-    return map_list, map_data, floor_tiles
+
+    return map_list, map_data
 
 
 def map_drawer(surface, map_list, map_data, measure):
@@ -27,14 +27,17 @@ def map_drawer(surface, map_list, map_data, measure):
 
 
 
-def collider(mapdata):
-    collisions_layer = []
-    for x, y, gid in mapdata.get_layer_by_name("floor"):
-        if gid:
-            tile_rect = pygame.Rect(x * mapdata.tilewidth,y * mapdata.tileheight,mapdata.tilewidth,mapdata.tileheight)
-            collisions_layer.append(tile_rect)
+def collider(map_data):
+    floor = []
 
-    return collisions_layer
+    for layer in map_data.visible_layers:
+        print(layer.name)
+
+
+
+    return floor
+
+
 
 
 
