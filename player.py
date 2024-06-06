@@ -28,16 +28,23 @@ class Player():
             self.move.x = 0
 
     def jump(self):
+        print(self.jumpheight, self.ground, self.move)
+
         #if A is pressed this returns True
         if self.joystick.get_button(2):
             if self.ground:
                 self.move.y = - self.jumpheight
                 self.ground = False
-                print(self.jumpheight, self.ground, self.move)
+
 
     def gravity(self):
-        if self.move[1] < self.jumpheight:
-            print("abe")
+
+        if True != self.ground:
+            print("am springa")
+
+        else:
+            self.ground = True
+            print("uf da plattform")
 
 
     def displayer(self, screen):
