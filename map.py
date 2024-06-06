@@ -14,6 +14,7 @@ def map_lister(tmxfile):
 
 
 def map_drawer(surface, map_list, map_data, measure):
+    global upsizefaktorw, upsizefaktorh
     upsizefaktorw, upsizefaktorh = surface.get_width() / (45*measure), surface.get_height() / (25 * measure)
 
     for layer in map_list:
@@ -27,7 +28,7 @@ def map_drawer(surface, map_list, map_data, measure):
 
 
 
-def collider(map_data):
+def collider(map_data, measure=16):
     floor = []
 
     for layer in map_data.visible_layers:
@@ -35,6 +36,7 @@ def collider(map_data):
             for x, y, gid in layer:
                 tile_img = map_data.get_tile_image_by_gid(gid)
                 if tile_img:
+                    tile = pygame.transform.scale(tile_img, (measure * upsizefaktorw + 1, measure * upsizefaktorh + 1))
                     tile = tile_img.get_rect()
                     floor.append(tile)
     return floor

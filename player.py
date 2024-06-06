@@ -1,7 +1,7 @@
 import pygame
 
 class Player():
-    def __init__(self, device_index, rect):
+    def __init__(self, device_index, rect, colidables):
 
         self.device_index = device_index
         self.player_rect = rect
@@ -13,6 +13,8 @@ class Player():
 
         self.move = pygame.math.Vector2(0,0)
         self.speed = 10
+
+        self.collidables = colidables
 
         self.ground = True
         self.jumpheight = 10
@@ -40,11 +42,14 @@ class Player():
     def gravity(self):
 
         if True != self.ground:
+            self.move.y += 1
             print("am springa")
 
         else:
-            self.ground = True
-            print("uf da plattform")
+            for rect in self.collidables:
+                if self.player_rect.colliderect(rect):
+                    self.ground = True
+                    print("uf da plattform")
 
 
     def displayer(self, screen):

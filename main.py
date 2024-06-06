@@ -61,13 +61,14 @@ def main():
                     else:
                         rect = player2_rect
 
-                stick = Player(event.device_index, rect)
+                stick = Player(event.device_index, rect, floor)
                 controllers.append(stick)
                 col_num += 1
 
 
 
-
+        for rect in floor:
+            pygame.draw.rect(screen, 'pink', rect)
 
         for controller in controllers:
             print(controller.device_index)
