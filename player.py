@@ -31,8 +31,14 @@ class Player():
         #if A is pressed this returns True
         if self.joystick.get_button(2):
             if self.ground:
-                self.move.y = -self.jumpheight
+                self.move.y = - self.jumpheight
                 self.ground = False
+                print(self.jumpheight, self.ground, self.move)
+
+    def gravity(self):
+        if self.move[1] < self.jumpheight:
+            print("abe")
+
 
     def displayer(self, screen):
         pygame.draw.rect(screen, self.color, self.player_rect)
@@ -40,6 +46,7 @@ class Player():
         self.move.y = 0
         self.x_movement()
         self.jump()
+        self.gravity()
         self.player_rect.move_ip(self.move)
 
 
