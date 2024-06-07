@@ -23,14 +23,15 @@ def main():
 
 
     map_list, map_data = map.map_lister('Attachments/map/tilesets_and_maps/new tilemap/mapabc.tmx')
-    upsizefaktorh, upsizefaktorw = map.map_drawer(screen, map_list, map_data, 16)
-
+    measurew = map_data.tilewidth
+    measureh = map_data.tileheight
+    upsizefaktorw, upsizefaktorh = screen_width / (45 * measurew), screen_height / (25 * measureh)
 
     pygame.display.set_caption("1 vs 1")
     clock = pygame.time.Clock()
     running = True
 
-    floor = map.collider(map_data)
+    floor = map.collider(map_data, upsizefaktorw, upsizefaktorh)
 
     #cotroler zeug
 
@@ -45,7 +46,7 @@ def main():
 
     while running:
 
-        map.map_drawer(screen, map_list, map_data, 16)
+        map.map_drawer(screen, map_list, map_data, upsizefaktorw, upsizefaktorh)
 
 
         for event in pygame.event.get():
