@@ -66,7 +66,7 @@ def main():
                 controllers.append(stick)
                 col_num += 1
 
-        if True:
+        if False:
             for rect in floor:
                 pygame.draw.rect(screen, 'pink', rect)
 
