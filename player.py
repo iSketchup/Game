@@ -41,15 +41,17 @@ class Player():
 
     def gravity(self):
 
-        if True != self.ground:
-            self.move.y += 1
-            print("am springa")
+        for rect in self.collidables:
+            if self.player_rect.colliderect(rect):
+                self.ground = True
+                print("uf da plattform")
 
-        else:
-            for rect in self.collidables:
-                if self.player_rect.colliderect(rect):
-                    self.ground = True
-                    print("uf da plattform")
+            else:
+                self.move.y += 1
+                print("am springa")
+
+
+
 
 
     def displayer(self, screen):
