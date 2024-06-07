@@ -65,8 +65,9 @@ def main():
                 controllers.append(stick)
                 col_num += 1
 
-        #for rect in floor:
-         #   pygame.draw.rect(screen, 'pink', rect)
+        if True:
+            for rect in floor:
+                pygame.draw.rect(screen, 'pink', rect)
 
         for controller in controllers:
             print(controller.device_index)

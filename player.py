@@ -44,11 +44,9 @@ class Player():
         for rect in self.collidables:
             if self.player_rect.colliderect(rect):
                 self.ground = True
-                print("uf da plattform")
 
-            else:
-                self.move.y += 1
-                print("am springa")
+        if not self.ground:
+            self.move.y += 1
 
 
 
