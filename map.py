@@ -15,20 +15,23 @@ def map_lister(tmxfile):
 
 def map_drawer(surface, map_list, map_data, measure):
     global upsizefaktorw, upsizefaktorh
-    upsizefaktorw, upsizefaktorh = surface.get_width() / (45*measure), surface.get_height() / (25 * measure)
+    upsizefaktorw, upsizefaktorh = surface.get_width() / (45 * measure), surface.get_height() / (25 * measure)
 
-    for layer in map_list:
-        for x, y, gid in layer:
-            tile = map_data.get_tile_image_by_gid(gid)
-            if tile:
-                tile = pygame.transform.scale(tile, (measure * upsizefaktorw + 1, measure * upsizefaktorh + 1))
-                surface.blit(tile, (x * upsizefaktorw * map_data.tilewidth, y * upsizefaktorh * map_data.tileheight))
+    if False:
+        pass
+    else:
+        for layer in map_list:
+            for x, y, gid in layer:
+                tile = map_data.get_tile_image_by_gid(gid)
+                if tile:
+                    tile = pygame.transform.scale(tile, (measure * upsizefaktorw + 1, measure * upsizefaktorh + 1))
+                    surface.blit(tile, (x * upsizefaktorw * map_data.tilewidth, y * upsizefaktorh * map_data.tileheight))
 
     return upsizefaktorh, upsizefaktorw
 
 
 
-def collider(map_data, measure=16):
+def collider(map_data):
     floor = []
 
     for layer in map_data.visible_layers:
@@ -36,8 +39,12 @@ def collider(map_data, measure=16):
             for x, y, gid in layer:
                 tile_img = map_data.get_tile_image_by_gid(gid)
                 if tile_img:
-                    tile = pygame.transform.scale(tile_img, (measure * upsizefaktorw + 1, measure * upsizefaktorh + 1))
-                    tile = tile_img.get_rect()
+                    tile = pygame.Rect(x * map_data.tilewidth * upsizefaktorw,
+                                        y * map_data.tileheight * upsizefaktorh,
+                                        map_data.tilewidth * upsizefaktorw+1,
+                                        map_data.tileheight * upsizefaktorh+1)
+
+
                     floor.append(tile)
     return floor
 
