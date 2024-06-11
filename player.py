@@ -54,20 +54,23 @@ class Player():
             self.move.y += 10
 
 
-    def lifebar(self):
-        p
-
+    def hit(self):
+        if self.joystick.get_button(3):
+            self.hitbox = pygame.Rect(self.player_rect.x * round(self.joystick.get_axis(0)), self.player_rect.y * round(self.joystick.get_axis(1)), self.player_rect.height, self.player_rect.width)
 
     def displayer(self, screen):
         pygame.draw.rect(screen, self.color, self.player_rect)
+        try:
+            pygame.draw.rect(screen, 'blue', self.hitbox)
+        except:
+            pass
         self.move.x = 0
         self.move.y = 0
         self.x_movement()
         self.jump()
         self.gravity()
+        self.hit()
         self.player_rect.move_ip(self.move)
-
-
 
 
 

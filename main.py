@@ -76,6 +76,9 @@ def main():
         for controller in controllers:
             print(controller.device_index)
 
+            print(controller.joystick.get_axis(0))
+            print(controller.joystick.get_axis(1))
+
  #       try:
         for controller in controllers:
             controller.displayer(screen)
