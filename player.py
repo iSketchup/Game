@@ -55,13 +55,17 @@ class Player():
 
 
     def hit(self):
+        hit_direction = pygame.math.Vector2(round(self.joystick.get_axis(0)), round(self.joystick.get_axis(1)))
+        hit_direction.x *= 100
+        hit_direction.y *= 100
+
         if self.joystick.get_button(3):
-            self.hitbox = pygame.Rect(self.player_rect.x * round(self.joystick.get_axis(0)), self.player_rect.y * round(self.joystick.get_axis(1)), self.player_rect.height, self.player_rect.width)
+            self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y, self.player_rect.height, self.player_rect.width)
 
     def displayer(self, screen):
         pygame.draw.rect(screen, self.color, self.player_rect)
         try:
-            pygame.draw.rect(screen, 'blue', self.hitbox)
+            pygame.draw.rect(screen, 'pink', self.hitbox)
         except:
             pass
         self.move.x = 0
