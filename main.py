@@ -2,6 +2,7 @@ import sys, pygame
 from player import Player
 from spritesheet import Spritesheet
 import map
+import overlay
 
 
 
@@ -38,16 +39,18 @@ def main():
     controllers = []
 
     col_num = 0
+    
+    tilesize = 16
 
-    player1_rect = pygame.Rect(0, 320 * upsizefaktorh, 16 * upsizefaktorh, 16 * upsizefaktorw)
+    player1_rect = pygame.Rect(0, 320 * upsizefaktorh, tilesize * upsizefaktorh, tilesize * upsizefaktorw)
 
-    player2_rect = pygame.Rect(screen_width - 16 * upsizefaktorw, 320 * upsizefaktorh, 16 * upsizefaktorh, 16 * upsizefaktorw)
+    player2_rect = pygame.Rect(screen_width - tilesize * upsizefaktorw, 320 * upsizefaktorh, tilesize * upsizefaktorh, tilesize * upsizefaktorw)
     rect = player1_rect
 
     while running:
 
         map.map_drawer(screen, map_list, map_data, upsizefaktorw, upsizefaktorh)
-
+        overlay.displayrer(screen, tilesize)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -66,7 +69,7 @@ def main():
                 controllers.append(stick)
                 col_num += 1
 
-        if True:
+        if False:
             for rect in floor:
                 pygame.draw.rect(screen, 'pink', rect)
 

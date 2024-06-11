@@ -17,7 +17,12 @@ class Player():
         self.collidables = colidables
 
         self.ground = True
-        self.jumpheight = 10
+        self.jumpheight = 100
+
+        self.lifebarw = 500
+        self.lifebarh = 8
+        self.lifebarx = 0
+        self.lifebary = 16
 
 
 
@@ -46,10 +51,11 @@ class Player():
                 self.ground = True
 
         if not self.ground:
-            self.move.y += 1
+            self.move.y += 10
 
 
-
+    def lifebar(self):
+        p
 
 
     def displayer(self, screen):
