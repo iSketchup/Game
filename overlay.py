@@ -23,8 +23,8 @@ def rect(screen, width, height, width_hp, height_hp ):
 
 
 def displayrer(screen, tilesize):
-    width, height, widht_hp, height_hp = calculations(tilesize)
-    rect(screen, width, height, widht_hp, height_hp)
+    width, height, width_hp, height_hp = calculations(tilesize)
+    rect(screen, width, height, width_hp, height_hp)
 
 
 

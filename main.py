@@ -50,7 +50,7 @@ def main():
     while running:
 
         map.map_drawer(screen, map_list, map_data, upsizefaktorw, upsizefaktorh)
-        overlay.displayrer(screen, tilesize)
+
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -82,6 +82,8 @@ def main():
  #       try:
         for controller in controllers:
             controller.displayer(screen)
+            overlay.displayrer(screen, tilesize)
+
 
 #        except:
  #           print('no controller connected')
