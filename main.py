@@ -78,7 +78,7 @@ def main():
 
  #       try:
         for controller in controllers:
-            controller.displayer(screen, controllers)
+            controller.displayer(screen)
 
 
 #        except:

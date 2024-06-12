@@ -54,21 +54,21 @@ class Player():
 
     def hit(self):
         hit_direction = pygame.math.Vector2(round(self.joystick.get_axis(0)), round(self.joystick.get_axis(1)))
-        hit_direction.x *= 100
-        hit_direction.y *= 100
+        hit_direction.x = abs(hit_direction.x) + self.player_rect.width * hit_direction.x
+
+        hit_direction.y *= abs(hit_direction.y) + self.player_rect.height * hit_direction.y
+        print(hit_direction.y)
 
         if self.joystick.get_button(3):
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y, self.player_rect.height, self.player_rect.width)
 
-    def hp_bar(self, controllers):
+    def hp_bar(self):
 
         height_hp = self.tilesize * 2
         width_hp = self.tilesize * 15
 
         self.hp_bars = []
         self.damage_bars = []
-
-        print(self.controller_num)
 
         if self.controller_num == 1:
             x_c = 0
@@ -100,9 +100,9 @@ class Player():
             self.damage_bars.append(damage)
 
 
-    def displayer(self, screen, controllers):
+    def displayer(self, screen):
         pygame.draw.rect(screen, self.color, self.player_rect)
-        self.hp_bar(controllers)
+        self.hp_bar()
 
         for rect in self.damage_bars:
             pygame.draw.rect(screen, "red", rect)
@@ -117,7 +117,7 @@ class Player():
             pass
         self.move.x = 0
         self.move.y = 0
-        self.x_movement()
+        #self.x_movement()
         self.jump()
         self.gravity()
         self.hit()
