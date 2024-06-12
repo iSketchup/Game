@@ -68,13 +68,13 @@ class Player():
         hit_direction.x = self.player_rect.width * hit_direction.x
 
         hit_direction.y = self.player_rect.height * hit_direction.y
-        print(hit_direction.y)
 
         if self.joystick.get_button(3):
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y, self.player_rect.height, self.player_rect.width)
 
     def being_hit(self, hits):
-        if self.player_rect.colliderect(hits):
+
+        if self.player_rect.colliderect(hits[0]):
             self.hp -= 1
 
 
