@@ -1,7 +1,8 @@
 import pygame
+import overlay
 
 class Player():
-    def __init__(self, device_index, rect, colidables):
+    def __init__(self, device_index, rect, colidables, tilesize, controllers, screen_width):
 
         self.device_index = device_index
         self.player_rect = rect
@@ -10,6 +11,9 @@ class Player():
         self.joystick = pygame.joystick.Joystick(device_index)
         self.name = self.joystick.get_name()
 
+        self.tilesize = tilesize
+        self.controllers = controllers
+        self.screen_width = screen_width
 
         self.move = pygame.math.Vector2(0,0)
         self.speed = 10
@@ -62,10 +66,52 @@ class Player():
         if self.joystick.get_button(3):
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y, self.player_rect.height, self.player_rect.width)
 
+    def hp_bar(self):
+
+        height = self.tilesize * 2
+        width = self.tilesize * 15
+        height_hp = self.tilesize * 2
+        widht_hp = self.tilesize * 15
+        self.hp_bars = []
+        self.damage_bars = []
+
+        for i in range(len(self.controllers) % 2):
+            if i == 1:
+                x_c = self.screen_width - 15 * self.tilesize
+                y_c = 0
+
+                hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
+
+                self.hp_bars.append(hp_rect)
+
+                print(self.hp_bars)
+            else:
+                x_c = 0
+                y_c = 0
+
+                damage = pygame.Rect(x_c, y_c, width, height)
+
+                self.damage_bars.append(damage)
+
+                print(self.damage_bars)
+
+
     def displayer(self, screen):
         pygame.draw.rect(screen, self.color, self.player_rect)
+        self.hp_bar()
+
+        for rect2 in self.damage_bars:
+            pygame.draw.rect(screen, "red", rect2)
+
+        for rect in self.hp_bars:
+            pygame.draw.rect(screen,"green", rect)
+
+
+
+
         try:
             pygame.draw.rect(screen, 'pink', self.hitbox)
+
         except:
             pass
         self.move.x = 0

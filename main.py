@@ -65,7 +65,7 @@ def main():
                     else:
                         rect = player2_rect
 
-                stick = Player(event.device_index, rect, floor)
+                stick = Player(event.device_index, rect, floor, tilesize, controllers, screen_width)
                 controllers.append(stick)
                 col_num += 1
 
@@ -81,8 +81,7 @@ def main():
 
  #       try:
         for controller in controllers:
-            controller.displayer(screen)
-            overlay.displayrer(screen, tilesize)
+            controller.displayer(screen,damage_bars, hp_bars)
 
 
 #        except:
