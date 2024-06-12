@@ -54,9 +54,9 @@ class Player():
 
     def hit(self):
         hit_direction = pygame.math.Vector2(round(self.joystick.get_axis(0)), round(self.joystick.get_axis(1)))
-        hit_direction.x = abs(hit_direction.x) + self.player_rect.width * hit_direction.x
+        hit_direction.x = self.player_rect.width * hit_direction.x
 
-        hit_direction.y *= abs(hit_direction.y) + self.player_rect.height * hit_direction.y
+        hit_direction.y = self.player_rect.height * hit_direction.y
         print(hit_direction.y)
 
         if self.joystick.get_button(3):
@@ -108,7 +108,7 @@ class Player():
             pygame.draw.rect(screen, "red", rect)
 
         for rect in self.hp_bars:
-            pygame.draw.rect(screen,"green", rect)
+            pygame.draw.rect(screen, "green", rect)
 
         try:
             pygame.draw.rect(screen, 'pink', self.hitbox)
@@ -117,7 +117,7 @@ class Player():
             pass
         self.move.x = 0
         self.move.y = 0
-        #self.x_movement()
+        self.x_movement()
         self.jump()
         self.gravity()
         self.hit()
