@@ -23,6 +23,8 @@ class Player():
         self.ground = True
         self.jumpheight = 100
 
+        self.hp = self.tilesize * 15
+
 
 
 
@@ -32,6 +34,14 @@ class Player():
 
         if abs(self.move.x) < 0.01:
             self.move.x = 0
+
+        if self.player_rect.x + self.player_rect.width > self.screen_width:
+            self.move.x = 0
+            self.player_rect.x = self.screen_width - self.player_rect.width
+
+        elif self.player_rect.x < 0:
+            self.move.x = 0
+            self.player_rect.x = 0
 
     def jump(self):
 
@@ -52,7 +62,8 @@ class Player():
             self.move.y += 10
 
 
-    def hit(self):
+    def hitting(self):
+        self.hitbox = None
         hit_direction = pygame.math.Vector2(round(self.joystick.get_axis(0)), round(self.joystick.get_axis(1)))
         hit_direction.x = self.player_rect.width * hit_direction.x
 
@@ -61,6 +72,11 @@ class Player():
 
         if self.joystick.get_button(3):
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y, self.player_rect.height, self.player_rect.width)
+
+    def being_hit(self, hits):
+        if self.player_rect.colliderect(hits):
+            self.hp -= 1
+
 
     def hp_bar(self):
 
@@ -74,7 +90,7 @@ class Player():
             x_c = 0
             y_c = 0
 
-            hp_rect = pygame.Rect(x_c, y_c, width_hp - 20, height_hp)
+            hp_rect = pygame.Rect(x_c, y_c, self.hp, height_hp)
 
             self.hp_bars.append(hp_rect)
 
@@ -90,7 +106,7 @@ class Player():
             x_c = self.screen_width - width_hp
             y_c = 0
 
-            hp_rect = pygame.Rect(x_c, y_c, width_hp, height_hp)
+            hp_rect = pygame.Rect(x_c, y_c, width_hp / self.hp, height_hp)
 
             self.hp_bars.append(hp_rect)
 
@@ -100,7 +116,7 @@ class Player():
             self.damage_bars.append(damage)
 
 
-    def displayer(self, screen):
+    def displayer(self, screen, hits):
         pygame.draw.rect(screen, self.color, self.player_rect)
         self.hp_bar()
 
@@ -110,21 +126,24 @@ class Player():
         for rect in self.hp_bars:
             pygame.draw.rect(screen, "green", rect)
 
-        try:
-            pygame.draw.rect(screen, 'pink', self.hitbox)
-            self.hitbox = []
-        except:
-            pass
+
+
         self.move.x = 0
         self.move.y = 0
         self.x_movement()
         self.jump()
         self.gravity()
-        self.hit()
+        self.hitting()
+
         self.player_rect.move_ip(self.move)
 
+        try:
+            self.being_hit(hits)
+            pygame.draw.rect(screen, 'pink', self.hitbox)
+        except:
+            pass
 
-
+        return self.hitbox
 
 
 

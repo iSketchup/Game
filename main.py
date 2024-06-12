@@ -76,13 +76,15 @@ def main():
         ''' for controller in controllers:
             print(controller.device_index)'''
 
- #       try:
+#        try:
+        hits_list = []
         for controller in controllers:
-            controller.displayer(screen)
+            hits = controller.displayer(screen, hits_list)
+            hits_list.append(hits)
 
-
+            hits = hits_list
 #        except:
- #           print('no controller connected')
+#            print('no controller connected')
 
         pygame.display.update()
         clock.tick(60)
