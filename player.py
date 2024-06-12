@@ -75,14 +75,26 @@ class Player():
         self.hp_bars = []
         self.damage_bars = []
 
-        print(len(self.controllers), 'sdfaaewf')
-        print(len(self.controllers) % 2)
-
 
         i = len(self.controllers) % 2
 
-        if i == 0:
-            print('no')
+        if i == 1:
+            x_c = 0
+            y_c = 0
+
+            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
+
+            self.hp_bars.append(hp_rect)
+
+            damage = pygame.Rect(x_c + height_hp, y_c, 76, height_hp)
+            damage.topright(x_c + height_hp, y_c)
+
+            self.damage_bars.append(damage)
+
+
+
+        # 0 means 2 here bc 2 % 2 = 0
+        elif i == 0:
             x_c = self.screen_width - widht_hp
             y_c = 0
 
@@ -90,30 +102,27 @@ class Player():
 
             self.hp_bars.append(hp_rect)
 
-            x_c = 0
-            y_c = 0
 
-            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
-
-            self.hp_bars.append(hp_rect)
-
-        elif i == 1:
-            x_c = 0
-            y_c = 0
-
-            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
-
-            self.hp_bars.append(hp_rect)
-
-            print('yeah')
-
-            '''
             damage = pygame.Rect(x_c, y_c, width, height)
+
+
+            self.damage_bars.append(damage)
+
+
+            x_c = 0
+            y_c = 0
+
+            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
+
+            self.hp_bars.append(hp_rect)
+
+
+            damage = pygame.Rect(x_c, y_c, width, height)
+
 
             self.damage_bars.append(damage)
 
             print(self.damage_bars)
-            '''
 
     def displayer(self, screen, controllers):
         pygame.draw.rect(screen, self.color, self.player_rect)
