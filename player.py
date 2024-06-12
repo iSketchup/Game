@@ -12,7 +12,7 @@ class Player():
         self.name = self.joystick.get_name()
 
         self.tilesize = tilesize
-        self.controllers = controllers
+        self.controller_num = (len(controllers) % 2) + 1
         self.screen_width = screen_width
 
         self.move = pygame.math.Vector2(0,0)
@@ -23,11 +23,7 @@ class Player():
         self.ground = True
         self.jumpheight = 100
 
-        self.lifebarw = 500
-        self.lifebarh = 8
-        self.lifebarx = 0
-        self.lifebary = 16
-
+Hp
 
 
 
@@ -67,79 +63,57 @@ class Player():
 
     def hp_bar(self, controllers):
 
-        self.controllers = controllers
-
         height_hp = self.tilesize * 2
-        widht_hp = self.tilesize * 15
+        width_hp = self.tilesize * 15
 
         self.hp_bars = []
         self.damage_bars = []
 
+        print(self.controller_num)
 
-        i = len(self.controllers) % 2
-
-        if i == 1:
+        if self.controller_num == 1:
             x_c = 0
             y_c = 0
 
-            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
+            hp_rect = pygame.Rect(x_c, y_c, width_hp - 20, height_hp)
 
             self.hp_bars.append(hp_rect)
 
-            damage = pygame.Rect(x_c + height_hp, y_c, 76, height_hp)
-            damage.topright(x_c + height_hp, y_c)
+            damage = pygame.Rect(x_c, y_c, width_hp, height_hp)
+            damage.left = x_c
 
             self.damage_bars.append(damage)
 
 
 
-        # 0 means 2 here bc 2 % 2 = 0
-        elif i == 0:
-            x_c = self.screen_width - widht_hp
+        #0 means 2 here bc 2 % 2 = 0
+        elif self.controller_num == 2:
+            x_c = self.screen_width - width_hp
             y_c = 0
 
-            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
+            hp_rect = pygame.Rect(x_c, y_c, width_hp, height_hp)
 
             self.hp_bars.append(hp_rect)
 
-
-            damage = pygame.Rect(x_c, y_c, width, height)
+            damage = pygame.Rect(x_c, y_c, width_hp, height_hp)
 
 
             self.damage_bars.append(damage)
 
-
-            x_c = 0
-            y_c = 0
-
-            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
-
-            self.hp_bars.append(hp_rect)
-
-
-            damage = pygame.Rect(x_c, y_c, width, height)
-
-
-            self.damage_bars.append(damage)
-
-            print(self.damage_bars)
 
     def displayer(self, screen, controllers):
         pygame.draw.rect(screen, self.color, self.player_rect)
         self.hp_bar(controllers)
-        '''
-        for rect2 in self.damage_bars:
-            pygame.draw.rect(screen, "red", rect2)'''
+
+        for rect in self.damage_bars:
+            pygame.draw.rect(screen, "red", rect)
 
         for rect in self.hp_bars:
             pygame.draw.rect(screen,"green", rect)
 
-
-
-
         try:
             pygame.draw.rect(screen, 'pink', self.hitbox)
-
+            self.hitbox = []
         except:
             pass
         self.move.x = 0
