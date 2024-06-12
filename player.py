@@ -23,7 +23,6 @@ class Player():
         self.ground = True
         self.jumpheight = 100
 
-Hp
 
 
 
