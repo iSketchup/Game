@@ -73,15 +73,12 @@ def main():
             for rect in floor:
                 pygame.draw.rect(screen, 'pink', rect)
 
-        for controller in controllers:
-            print(controller.device_index)
-
-            print(controller.joystick.get_axis(0))
-            print(controller.joystick.get_axis(1))
+        ''' for controller in controllers:
+            print(controller.device_index)'''
 
  #       try:
         for controller in controllers:
-            controller.displayer(screen,damage_bars, hp_bars)
+            controller.displayer(screen, controllers)
 
 
 #        except:

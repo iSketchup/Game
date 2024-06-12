@@ -39,7 +39,6 @@ class Player():
             self.move.x = 0
 
     def jump(self):
-        print(self.jumpheight, self.ground, self.move)
 
         #if A is pressed this returns True
         if self.joystick.get_button(2):
@@ -66,42 +65,62 @@ class Player():
         if self.joystick.get_button(3):
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y, self.player_rect.height, self.player_rect.width)
 
-    def hp_bar(self):
+    def hp_bar(self, controllers):
 
-        height = self.tilesize * 2
-        width = self.tilesize * 15
+        self.controllers = controllers
+
         height_hp = self.tilesize * 2
         widht_hp = self.tilesize * 15
+
         self.hp_bars = []
         self.damage_bars = []
 
-        for i in range(len(self.controllers) % 2):
-            if i == 1:
-                x_c = self.screen_width - 15 * self.tilesize
-                y_c = 0
-
-                hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
-
-                self.hp_bars.append(hp_rect)
-
-                print(self.hp_bars)
-            else:
-                x_c = 0
-                y_c = 0
-
-                damage = pygame.Rect(x_c, y_c, width, height)
-
-                self.damage_bars.append(damage)
-
-                print(self.damage_bars)
+        print(len(self.controllers), 'sdfaaewf')
+        print(len(self.controllers) % 2)
 
 
-    def displayer(self, screen):
+        i = len(self.controllers) % 2
+
+        if i == 0:
+            print('no')
+            x_c = self.screen_width - widht_hp
+            y_c = 0
+
+            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
+
+            self.hp_bars.append(hp_rect)
+
+            x_c = 0
+            y_c = 0
+
+            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
+
+            self.hp_bars.append(hp_rect)
+
+        elif i == 1:
+            x_c = 0
+            y_c = 0
+
+            hp_rect = pygame.Rect(x_c, y_c, widht_hp, height_hp)
+
+            self.hp_bars.append(hp_rect)
+
+            print('yeah')
+
+            '''
+            damage = pygame.Rect(x_c, y_c, width, height)
+
+            self.damage_bars.append(damage)
+
+            print(self.damage_bars)
+            '''
+
+    def displayer(self, screen, controllers):
         pygame.draw.rect(screen, self.color, self.player_rect)
-        self.hp_bar()
-
+        self.hp_bar(controllers)
+        '''
         for rect2 in self.damage_bars:
-            pygame.draw.rect(screen, "red", rect2)
+            pygame.draw.rect(screen, "red", rect2)'''
 
         for rect in self.hp_bars:
             pygame.draw.rect(screen,"green", rect)
