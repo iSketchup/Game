@@ -23,7 +23,7 @@ class Player():
         self.ground = True
         self.jumpheight = 100
 
-        self.hp = self.tilesize * 15
+        self.hp = self.tilesize * 15 /100
 
         self.dead = False
 
@@ -76,27 +76,30 @@ class Player():
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                       self.player_rect.height, self.player_rect.width)
 
-    def being_hit(self):
-        hit = self.controllers[(self.controller_num-1)]
+    def being_hit(self, screen):
 
         for controller in self.controllers:
+            try:
+                if controller.controller_num == 1:
+                    try:
+                        hit = self.controllers[1]
+                    except IndexError:
+                        pass
+                else:
+                    try:
+                        hit = self.controllers[0]
+                    except IndexError:
+                        pass
 
-            if controller.controller_num == 1:
-                try:
-                    hit = self.controllers[0]
-                except IndexError:
-                    pass
-            else:
-                try:
-                    hit = self.controllers[1]
-                except IndexError:
-                    pass
 
-        hit = hit.player_rect
+                hit = hit.hitbox
+                pygame.draw.rect(screen,'orange', hit)
 
-        if self.player_rect.colliderect(hit):
-            self.hp -= 1
 
+                if self.player_rect.colliderect(hit):
+                    self.hp += 1
+            except:
+                pass
 
     def hp_bar(self):
 
@@ -110,10 +113,10 @@ class Player():
             x_c = 0
             y_c = 0
 
-            if self.hp == 0:
+            if self.hp == width_hp:
                 self.dead = True
             else:
-                hp_rect = pygame.Rect(x_c, y_c, width_hp / self.hp, height_hp)
+                hp_rect = pygame.Rect(x_c, y_c, width_hp - self.hp, height_hp)
                 self.hp_bars.append(hp_rect)
 
             damage = pygame.Rect(x_c, y_c, width_hp, height_hp)
@@ -131,7 +134,7 @@ class Player():
             if self.hp == 0:
                 self.dead = True
             else:
-                hp_rect = pygame.Rect(x_c, y_c, width_hp / self.hp, height_hp)
+                hp_rect = pygame.Rect(x_c, y_c, width_hp - self.hp, height_hp)
                 self.hp_bars.append(hp_rect)
 
             damage = pygame.Rect(x_c, y_c, width_hp, height_hp)
@@ -163,7 +166,7 @@ class Player():
         self.hitting()
 
         self.player_rect.move_ip(self.move)
-        self.being_hit()
+        self.being_hit(screen)
         try:
 
             pygame.draw.rect(screen, 'pink', self.hitbox)
