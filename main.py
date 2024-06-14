@@ -83,7 +83,7 @@ def main():
         hits_list = []
         for controller in controllers:
             controller.displayer(screen, controllers)
-            print(controller.device_index)
+            print(controller.controller_num)
 
             hits = hits_list
 #        except:
