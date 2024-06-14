@@ -94,5 +94,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    menu.main_menu(main)
 
