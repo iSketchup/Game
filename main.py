@@ -2,7 +2,6 @@ import sys, pygame
 from player import Player
 from spritesheet import Spritesheet
 import map
-import overlay
 
 
 
@@ -52,10 +51,13 @@ def main():
         map.map_drawer(screen, map_list, map_data, upsizefaktorw, upsizefaktorh)
 
 
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
 
 
             if event.type == pygame.JOYDEVICEADDED:
@@ -69,18 +71,21 @@ def main():
                 controllers.append(stick)
                 col_num += 1
 
+        for controller in controllers:
+            if controller.dead:
+                print(controller.controller_num, ' wins')
+                sys.exit()
+
         if False:
             for rect in floor:
                 pygame.draw.rect(screen, 'pink', rect)
 
-        ''' for controller in controllers:
-            print(controller.device_index)'''
 
 #        try:
         hits_list = []
         for controller in controllers:
-            hits = controller.displayer(screen, hits_list)
-            hits_list.append(hits)
+            controller.displayer(screen, controllers)
+            print(controller.device_index)
 
             hits = hits_list
 #        except:
@@ -92,3 +97,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

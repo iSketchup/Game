@@ -1,6 +1,4 @@
 import pygame
-import overlay
-
 class Player():
     def __init__(self, device_index, rect, colidables, tilesize, controllers, screen_width):
 
@@ -15,6 +13,8 @@ class Player():
         self.controller_num = (len(controllers) % 2) + 1
         self.screen_width = screen_width
 
+        self.controllers = controllers
+
         self.move = pygame.math.Vector2(0,0)
         self.speed = 10
 
@@ -24,6 +24,8 @@ class Player():
         self.jumpheight = 100
 
         self.hp = self.tilesize * 15
+
+        self.dead = False
 
 
 
@@ -64,17 +66,35 @@ class Player():
 
     def hitting(self):
         self.hitbox = None
+
         hit_direction = pygame.math.Vector2(round(self.joystick.get_axis(0)), round(self.joystick.get_axis(1)))
         hit_direction.x = self.player_rect.width * hit_direction.x
 
         hit_direction.y = self.player_rect.height * hit_direction.y
 
         if self.joystick.get_button(3):
-            self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y, self.player_rect.height, self.player_rect.width)
+            self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
+                                      self.player_rect.height, self.player_rect.width)
 
-    def being_hit(self, hits):
+    def being_hit(self):
+        hit = self.controllers[(self.controller_num-1)]
 
-        if self.player_rect.colliderect(hits[0]):
+        for controller in self.controllers:
+
+            if controller.controller_num == 1:
+                try:
+                    hit = self.controllers[0]
+                except IndexError:
+                    pass
+            else:
+                try:
+                    hit = self.controllers[1]
+                except IndexError:
+                    pass
+
+        hit = hit.player_rect
+
+        if self.player_rect.colliderect(hit):
             self.hp -= 1
 
 
@@ -90,9 +110,11 @@ class Player():
             x_c = 0
             y_c = 0
 
-            hp_rect = pygame.Rect(x_c, y_c, self.hp, height_hp)
-
-            self.hp_bars.append(hp_rect)
+            if self.hp == 0:
+                self.dead = True
+            else:
+                hp_rect = pygame.Rect(x_c, y_c, width_hp / self.hp, height_hp)
+                self.hp_bars.append(hp_rect)
 
             damage = pygame.Rect(x_c, y_c, width_hp, height_hp)
             damage.left = x_c
@@ -106,9 +128,11 @@ class Player():
             x_c = self.screen_width - width_hp
             y_c = 0
 
-            hp_rect = pygame.Rect(x_c, y_c, width_hp / self.hp, height_hp)
-
-            self.hp_bars.append(hp_rect)
+            if self.hp == 0:
+                self.dead = True
+            else:
+                hp_rect = pygame.Rect(x_c, y_c, width_hp / self.hp, height_hp)
+                self.hp_bars.append(hp_rect)
 
             damage = pygame.Rect(x_c, y_c, width_hp, height_hp)
 
@@ -116,7 +140,10 @@ class Player():
             self.damage_bars.append(damage)
 
 
-    def displayer(self, screen, hits):
+    def displayer(self, screen, controllers):
+
+        self.controllers = controllers
+
         pygame.draw.rect(screen, self.color, self.player_rect)
         self.hp_bar()
 
@@ -136,14 +163,13 @@ class Player():
         self.hitting()
 
         self.player_rect.move_ip(self.move)
-
+        self.being_hit()
         try:
-            self.being_hit(hits)
-            pygame.draw.rect(screen, 'pink', self.hitbox)
-        except:
-            pass
 
-        return self.hitbox
+            pygame.draw.rect(screen, 'pink', self.hitbox)
+        except TypeError:
+           pass
+
 
 
 
