@@ -4,15 +4,16 @@ import map
 
 def draw_main_screen(screen):
 
-    a_button = pygame.image.load("Attachments/menu/dreieck.png")
-    b_button = pygame.image.load("Attachments/menu/Kreis.png")
-    x_button = pygame.image.load("Attachments/menu/viereck.png")
-    y_button = pygame.image.load("Attachments/menu/y_button.")
+    a_button = pygame.image.load("Attachments/menu/a_button.png")
+    b_button = pygame.image.load("Attachments/menu/b_button.png")
+    x_button = pygame.image.load("Attachments/menu/x_button.png")
+    y_button = pygame.image.load("Attachments/menu/y_button.png")
+    l_joy = pygame.image.load("Attachments/menu/l_button.png")
 
-    screen.blit(triangle, (0, 16))
-    screen.blit(circle, (0, 32))
-    screen.blit(square, (0, 50))
-    screen.blit(cross, (0, 66))
+    screen.blit(a_button, (0, 16))
+    screen.blit(b_button, (0, 32))
+    screen.blit(x_button, (0, 50))
+    screen.blit(y_button, (0, 66))
 
     pygame.display.flip()
 
