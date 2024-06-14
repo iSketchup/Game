@@ -78,28 +78,28 @@ class Player():
 
     def being_hit(self, screen):
 
-        for controller in self.controllers:
+        if self.controller_num == 1:
             try:
-                if controller.controller_num == 1:
-                    try:
-                        hit = self.controllers[1]
-                    except IndexError:
-                        pass
-                else:
-                    try:
-                        hit = self.controllers[0]
-                    except IndexError:
-                        pass
-
-
-                hit = hit.hitbox
-                pygame.draw.rect(screen,'orange', hit)
-
-
-                if self.player_rect.colliderect(hit):
-                    self.hp += 1
-            except:
+                hit = self.controllers[1]
+            except IndexError:
                 pass
+        elif self.controller_num == 2:
+            try:
+                hit = self.controllers[0]
+            except IndexError:
+                pass
+
+        try:
+            hit = hit.hitbox
+            pygame.draw.rect(screen, 'orange', hit)
+
+            if self.player_rect.colliderect(hit):
+                self.hp += 1
+
+        except:
+            pass
+
+
 
     def hp_bar(self):
 
