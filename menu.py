@@ -4,10 +4,10 @@ import map
 
 def draw_main_screen(screen):
 
-    triangle = pygame.image.load("Attachments/menu/dreieck.png")
-    circle = pygame.image.load("Attachments/menu/Kreis.png")
-    square = pygame.image.load("Attachments/menu/viereck.png")
-    cross = pygame.image.load("Attachments/menu/x.png")
+    a_button = pygame.image.load("Attachments/menu/dreieck.png")
+    b_button = pygame.image.load("Attachments/menu/Kreis.png")
+    x_button = pygame.image.load("Attachments/menu/viereck.png")
+    y_button = pygame.image.load("Attachments/menu/y_button.")
 
     screen.blit(triangle, (0, 16))
     screen.blit(circle, (0, 32))
