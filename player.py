@@ -3,7 +3,7 @@ import sys
 import pygame
 from spritesheet import Spritesheet
 class Player():
-    def __init__(self, device_index, colidables, tilesize, controllers, screen_width, rect, keyboard):
+    def __init__(self, device_index, colidables, tilesize, controllers, screen, rect, keyboard):
 
         self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
         self.run_right = Spritesheet('Attachments/knight/Run_right.png',(48, 64))
@@ -31,7 +31,10 @@ class Player():
 
         self.tilesize = tilesize
         self.controller_num = (len(controllers) % 2) + 1
-        self.screen_width = screen_width
+
+        self.screen = screen
+        self.screen_width = screen.get_width()
+        self.screen_height = screen.get_height()
 
         self.controllers = controllers
 
@@ -273,36 +276,28 @@ class Player():
 
             counter += 1
             self.last_update = now
-            if counter >= 3:
-                self.hitable = True
         return counter
 
 
-    def displayer(self, screen):
+    def displayer(self):
 
         self.cur_frame = self.animat(self.cur_frame)
 
         print(self.current_state.col_count)
 
 
-        screen.blit(self.current_state.frame_list[(self.cur_frame) % self.current_state.col_count], self.player_rect)
+        self.screen.blit(self.current_state.frame_list[(self.cur_frame) % self.current_state.col_count], self.player_rect)
 
         if (self.cur_frame) % self.current_state.col_count == 0:
             self.current_state = self.idle
 
         for rect in self.damage_bars:
-            pygame.draw.rect(screen, "red", rect)
+            pygame.draw.rect(self.screen, "red", rect)
 
         for rect in self.hp_bars:
-            pygame.draw.rect(screen, "green", rect)
+            pygame.draw.rect(self.screen, "green", rect)
 
-        try:
-            pygame.draw.rect(screen, 'pink', self.hitbox)
-        except TypeError:
-            pass
-
-
-    def update(self, screen, controllers):
+    def update(self, controllers):
         self.controllers = controllers
         self.hp_bar()
         self.move.x = 0
@@ -315,7 +310,7 @@ class Player():
         self.player_rect.move_ip(self.move)
         self.being_hit()
 
-        self.displayer(screen)
+        self.displayer()
 
 
 

@@ -50,7 +50,7 @@ def main():
                 else:
                     rect = player2_rect
 
-            stick = Player(i, floor, tilesize, controllers, screen_width, rect, keyboard)
+            stick = Player(i, floor, tilesize, controllers, screen, rect, keyboard)
             controllers.append(stick)
 
     while running:
@@ -75,12 +75,12 @@ def main():
                         rect = player1_rect
                     else:
                         rect = player2_rect
-                stick = Player(event.device_index, floor, tilesize, controllers, screen_width, rect,
+                stick = Player(event.device_index, floor, tilesize, controllers, screen, rect,
                                keyboard)
                 controllers.append(stick)
 
         for controller in controllers:
-            controller.update(screen, controllers)
+            controller.update(controllers)
 
 
         pygame.display.update()
