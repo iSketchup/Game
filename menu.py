@@ -1,28 +1,36 @@
+import time
+
 import pygame
 import sys
 
 def death_screen(screen):
 
-    screen_width = screen.get_width()
-    screen_height = screen.get_height()
+    time.sleep(1)
+    while True:
 
-    bg = pygame.image.load("Attachments/menu/bg.png").convert_alpha()
-    player1 = pygame.image.load("Attachments/menu/player1.png").convert_alpha()
-    player2 = pygame.image.load("Attachments/menu/player2.png").convert_alpha()
+        screen_width = screen.get_width()
+        screen_height = screen.get_height()
 
-    scale_factor = 5
+        bg = pygame.image.load("Attachments/menu/bg.png").convert_alpha()
+        player1 = pygame.image.load("Attachments/menu/player1.png").convert_alpha()
+        player2 = pygame.image.load("Attachments/menu/player2.png").convert_alpha()
 
-    bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
-    player1 = pygame.transform.scale(player1, (player1.get_width() * scale_factor * 5, player1.get_height() * scale_factor ))
-    player2 = pygame.transform.scale(player2, (player2.get_width() * scale_factor * 5, player2.get_height() * scale_factor ))
+        scale_factor = 5
 
-    bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
-    player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2 - 200))
-    player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2 - 200))
+        bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
+        player1 = pygame.transform.scale(player1, (player1.get_width() * scale_factor * 5, player1.get_height() * scale_factor ))
+        player2 = pygame.transform.scale(player2, (player2.get_width() * scale_factor * 5, player2.get_height() * scale_factor ))
 
-    screen.blit(bg, bg_pos)
-    screen.blit(player1, player1_rect)
-    screen.blit(player2, player2_rect)
+        bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
+        player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2 - 200))
+        player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2 - 200))
+
+        screen.blit(bg, bg_pos)
+        screen.blit(player1, player1_rect)
+        screen.blit(player2, player2_rect)
+
+        if pygame.key.get_pressed() != []:
+            break
 
 def draw_main_screen(screen):
 
@@ -123,6 +131,8 @@ def main_menu():
 
     screen = pygame.display.set_mode((0, 0))
 
+    keyboard = True
+
     current_menu = "main"
 
     play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(screen)
@@ -160,5 +170,6 @@ def main_menu():
                     current_menu = "main"
 
         pygame.display.update()
+    return keyboard
 
 

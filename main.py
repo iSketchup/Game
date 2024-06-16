@@ -5,6 +5,7 @@ import map
 import menu
 
 
+
 def main():
 
     pygame.init()
@@ -37,9 +38,8 @@ def main():
     player2_rect = pygame.Rect(screen_width - tilesize * upsizefaktorw, 320 * upsizefaktorh, tilesize * upsizefaktorh, tilesize * upsizefaktorw)
     rect = player1_rect
 
-    keyboard = True
 
-    menu.main_menu()
+    keyboard = menu.main_menu()
 
     if keyboard:
         for i in range(2):

@@ -1,6 +1,8 @@
 import sys
 
 import pygame
+
+import menu
 from spritesheet import Spritesheet
 class Player():
     def __init__(self, device_index, colidables, tilesize, controllers, screen, rect, keyboard):
@@ -238,7 +240,6 @@ class Player():
 
             if self.hp >= width_hp:
                 self.dead = True
-                sys.exit()
 
 
             else:
@@ -311,6 +312,9 @@ class Player():
         self.being_hit()
 
         self.displayer()
+
+        if self.dead:
+            menu.death_screen(self.screen)
 
 
 
