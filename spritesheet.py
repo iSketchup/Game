@@ -19,12 +19,3 @@ class Spritesheet(pygame.sprite.Sprite):
 			for col in range(self.image.get_width() // self.width):
 				image = self.image.subsurface(pygame.Rect(col * self.width, row * self.height, self.width, self.height))
 				self.frame_list.append(image)
-
-
-
-	def draw(self, screen):
-		screen.blit( self.frame_list[0], (0,0))
-
-	def update(self, screen):
-
-		self.draw(screen)

@@ -1,11 +1,16 @@
 import pygame
+from spritesheet import Spritesheet
 class Player():
     def __init__(self, device_index, rect, colidables, tilesize, controllers, screen_width):
 
-        self.device_index = device_index
-        self.player_rect = rect
-        self.color = 'blue'
+        self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
+        self.player_rect = self.idle.frame_list[0].get_rect()
 
+        self.last_update = pygame.time.get_ticks()
+        self.update_rate = 60
+        self.cur_frame = 0
+
+        self.device_index = device_index
         self.joystick = pygame.joystick.Joystick(device_index)
         self.name = self.joystick.get_name()
 
@@ -23,7 +28,7 @@ class Player():
         self.ground = True
         self.jumpheight = 100
 
-        self.hp = self.tilesize * 15 /100
+        self.hp = self.tilesize * 15 / 100
 
         self.dead = False
 
@@ -76,7 +81,7 @@ class Player():
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                       self.player_rect.height, self.player_rect.width)
 
-    def being_hit(self, screen):
+    def being_hit(self):
 
         if self.controller_num == 1:
             try:
@@ -91,7 +96,6 @@ class Player():
 
         try:
             hit = hit.hitbox
-            pygame.draw.rect(screen, 'orange', hit)
 
             if self.player_rect.colliderect(hit):
                 self.hp += 1
@@ -143,12 +147,22 @@ class Player():
             self.damage_bars.append(damage)
 
 
-    def displayer(self, screen, controllers):
+    def animat(self, counter):
+        now = pygame.time.get_ticks()
 
-        self.controllers = controllers
 
-        pygame.draw.rect(screen, self.color, self.player_rect)
-        self.hp_bar()
+        if self.last_update - now > self.update_rate:
+
+            counter += 1
+
+        return counter
+
+
+    def displayer(self, screen):
+
+        self.cur_frame = self.animat(self.cur_frame)
+
+        screen.blit(self.idle.frame_list[self.cur_frame], self.player_rect)
 
         for rect in self.damage_bars:
             pygame.draw.rect(screen, "red", rect)
@@ -156,8 +170,16 @@ class Player():
         for rect in self.hp_bars:
             pygame.draw.rect(screen, "green", rect)
 
+        try:
+
+            pygame.draw.rect(screen, 'pink', self.hitbox)
+        except TypeError:
+            pass
 
 
+    def update(self, screen, controllers):
+        self.controllers = controllers
+        self.hp_bar()
         self.move.x = 0
         self.move.y = 0
         self.x_movement()
@@ -166,13 +188,9 @@ class Player():
         self.hitting()
 
         self.player_rect.move_ip(self.move)
-        self.being_hit(screen)
-        try:
+        self.being_hit()
 
-            pygame.draw.rect(screen, 'pink', self.hitbox)
-        except TypeError:
-           pass
-
+        self.displayer(screen)
 
 
 
