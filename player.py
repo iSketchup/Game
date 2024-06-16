@@ -4,8 +4,13 @@ class Player():
     def __init__(self, device_index, colidables, tilesize, controllers, screen_width):
 
         self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
-        self.attack
-        self.jump_img
+        self.run_right = Spritesheet('Attachments/knight/Run_right.png',(48, 64))
+        self.run_left = Spritesheet('Attachments/knight/Run.png',(48, 64))
+
+        self.attack = Spritesheet('Attachments/knight/Attack1.png',(48, 64))
+        #self.jumping = Spritesheet(,(, ))
+        #self.hit = Spritesheet(,(, ))
+
 
 
         self.current_state = self.idle
@@ -44,8 +49,18 @@ class Player():
 
         self.move.x = self.joystick.get_axis(0) * self.speed
 
-        if abs(self.move.x) < 0.01:
+        if abs(self.move.x) < 0.05:
             self.move.x = 0
+
+        if self.move.x < 0 :
+            self.current_state = self.run_left
+
+        elif self.move.x > 0 :
+            self.current_state = self.run_right
+
+        else:
+            self.current_state = self.idle
+
 
         if self.player_rect.x + self.player_rect.width > self.screen_width:
             self.move.x = 0
@@ -85,7 +100,7 @@ class Player():
         if self.joystick.get_button(3):
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                       self.player_rect.height, self.player_rect.width)
-            self.current_state
+            self.current_state = self.attack
 
     def being_hit(self):
 
@@ -155,9 +170,6 @@ class Player():
 
     def animat(self, counter):
         now = pygame.time.get_ticks()
-        print(self.last_update)
-        print(now)
-
 
         if now - self.last_update > self.update_rate:
 
