@@ -62,14 +62,12 @@ def main():
                     else:
                         rect = player2_rect
 
-                stick = Player(event.device_index, floor, tilesize, controllers, screen_width, rect)
+                stick = Player(event.device_index, floor, tilesize, controllers, screen_width, rect,
+                               True)
                 controllers.append(stick)
 
 
-        for controller in controllers:
-            if controller.dead:
-                print(controller.controller_num, ' wins')
-                sys.exit()
+
 
         if False:
             for rect in floor:
@@ -77,12 +75,9 @@ def main():
 
 
 #        try:
-        hits_list = []
         for controller in controllers:
             controller.update(screen, controllers)
 
-
-            hits = hits_list
 #        except:
 #            print('no controller connected')
 

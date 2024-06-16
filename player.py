@@ -3,20 +3,19 @@ import sys
 import pygame
 from spritesheet import Spritesheet
 class Player():
-    def __init__(self, device_index, colidables, tilesize, controllers, screen_width, rect):
+    def __init__(self, device_index, colidables, tilesize, controllers, screen_width, rect, keyboard):
 
         self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
         self.run_right = Spritesheet('Attachments/knight/Run_right.png',(48, 64))
         self.run_left = Spritesheet('Attachments/knight/Run.png',(48, 64))
 
         self.attack = Spritesheet('Attachments/knight/Attack1.png',(64, 80))
-        self.jumping = Spritesheet('Attachments/knight/Jump.png',(64, 48))
+        self.jumping = Spritesheet('Attachments/knight/Jump.png',(48, 64))
         self.hit = Spritesheet('Attachments/knight/Take Hit.png',(64, 64))
 
 
 
         self.current_state = self.idle
-        self.player_rect = self.current_state.frame_list[0].get_rect()
         self.player_rect = rect
 
         self.last_update = pygame.time.get_ticks()
@@ -42,42 +41,90 @@ class Player():
         self.jumpheight = 100
 
         self.hp = self.tilesize * 15 / 100
-        self.hitable = True
-
         self.dead = False
-
+        self.keyboard = keyboard
 
 
 
     def x_movement(self):
 
-        self.move.x = self.joystick.get_axis(0) * self.speed
+        if not self.keyboard:
+            self.move.x = self.joystick.get_axis(0) * self.speed
 
-        if abs(self.move.x) < 0.05:
-            self.move.x = 0
+            if abs(self.move.x) < 0.05:
+                self.move.x = 0
 
-        if self.move.x < 0 :
-            self.current_state = self.run_left
+            if self.move.x < 0 :
+                self.current_state = self.run_left
 
-        elif self.move.x > 0 :
-            self.current_state = self.run_right
+            elif self.move.x > 0 :
+                self.current_state = self.run_right
 
-        if self.player_rect.x + self.player_rect.width > self.screen_width:
-            self.move.x = 0
-            self.player_rect.x = self.screen_width - self.player_rect.width
+            if self.player_rect.x + self.player_rect.width > self.screen_width:
+                self.move.x = 0
+                self.player_rect.x = self.screen_width - self.player_rect.width
 
-        elif self.player_rect.x < 0:
-            self.move.x = 0
-            self.player_rect.x = 0
+            elif self.player_rect.x < 0:
+                self.move.x = 0
+                self.player_rect.x = 0
+        else:
+
+            self.pressed_keys = pygame.key.get_pressed()
+
+            if self.controller_num == 1:
+
+                if self.pressed_keys[pygame.K_d] == True:
+                    self.move.x = self.speed
+
+                elif self.pressed_keys[pygame.K_a] == True:
+                    self.move.x = - self.speed
+
+            else:
+                if self.pressed_keys[pygame.K_l] == True:
+                    self.move.x = self.speed
+
+                elif self.pressed_keys[pygame.K_j] == True:
+                    self.move.x = - self.speed
+
+            if self.move.x < 0:
+                self.current_state = self.run_left
+
+            elif self.move.x > 0:
+                self.current_state = self.run_right
+
+
+            if self.player_rect.x + self.player_rect.width > self.screen_width:
+                self.move.x = 0
+                self.player_rect.x = self.screen_width - self.player_rect.width
+
+            elif self.player_rect.x < 0:
+                self.move.x = 0
+                self.player_rect.x = 0
 
     def jump(self):
-
-        #if A is pressed this returns True
-        if self.joystick.get_button(2):
-            if self.ground:
-                self.move.y = - self.jumpheight
-                self.ground = False
-
+        if not self.keyboard:
+            #if A is pressed this returns True
+            if self.joystick.get_button(2):
+                if self.ground:
+                    self.move.y = - self.jumpheight
+                    self.ground = False
+                else:
+                    self.current_state = self.jumping
+        else:
+            if self.controller_num == 1:
+                if self.pressed_keys[pygame.K_w]:
+                    if self.ground:
+                        self.move.y = - self.jumpheight
+                        self.ground = False
+                    else:
+                        self.current_state = self.jumping
+            elif self.controller_num == 2:
+                if self.pressed_keys[pygame.K_i]:
+                    if self.ground:
+                        self.move.y = - self.jumpheight
+                        self.ground = False
+                    else:
+                        self.current_state = self.jumping
 
     def gravity(self):
 
@@ -92,15 +139,57 @@ class Player():
     def hitting(self):
         self.hitbox = None
 
-        hit_direction = pygame.math.Vector2(round(self.joystick.get_axis(0)), round(self.joystick.get_axis(1)))
-        hit_direction.x = self.player_rect.width * hit_direction.x
+        if not self.keyboard:
+            hit_direction = pygame.math.Vector2(round(self.joystick.get_axis(0)), round(self.joystick.get_axis(1)))
 
+        elif self.controller_num == 1:
+            x_value = 0
+            y_value = 0
+
+            if self.pressed_keys[pygame.K_w]:
+                x_value += 1
+            if self.pressed_keys[pygame.K_s]:
+                x_value -= 1
+
+            if self.pressed_keys[pygame.K_d]:
+                y_value += 1
+            if self.pressed_keys[pygame.K_a]:
+                y_value -= 1
+            hit_direction = pygame.math.Vector2(x_value, y_value)
+        else:
+            x_value = 0
+            y_value = 0
+
+            if self.pressed_keys[pygame.K_i]:
+                x_value += 1
+            if self.pressed_keys[pygame.K_k]:
+                x_value -= 1
+
+            if self.pressed_keys[pygame.K_l]:
+                y_value += 1
+            if self.pressed_keys[pygame.K_j]:
+                y_value -= 1
+            hit_direction = pygame.math.Vector2(x_value, y_value)
+
+        hit_direction.x = self.player_rect.width * hit_direction.x
         hit_direction.y = self.player_rect.height * hit_direction.y
 
-        if self.joystick.get_button(3):
+
+        if self.joystick.get_button(3) and not self.keyboard:
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                       self.player_rect.height, self.player_rect.width)
             self.current_state = self.attack
+
+        elif self.controller_num == 1:
+            if self.pressed_keys[pygame.K_c]:
+                self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
+                                          self.player_rect.height, self.player_rect.width)
+                self.current_state = self.attack
+        else:
+            if self.pressed_keys[pygame.K_n]:
+                self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
+                                          self.player_rect.height, self.player_rect.width)
+                self.current_state = self.attack
 
     def being_hit(self):
 
@@ -118,7 +207,7 @@ class Player():
         try:
             hit = hit.hitbox
 
-            if self.player_rect.colliderect(hit) and self.hitable:
+            if self.player_rect.colliderect(hit):
                 self.hp += 5
                 self.current_state = self.hit
 
@@ -204,11 +293,10 @@ class Player():
         for rect in self.hp_bars:
             pygame.draw.rect(screen, "green", rect)
 
-        '''        try:
-
+        try:
             pygame.draw.rect(screen, 'pink', self.hitbox)
         except TypeError:
-            pass'''
+            pass
 
 
     def update(self, screen, controllers):
