@@ -109,7 +109,7 @@ def ingame_menu(screen):
     pygame.display.flip()
 
 
-def main_menu(main):
+def main_menu():
 
     pygame.joystick.init()
 
@@ -143,7 +143,6 @@ def main_menu(main):
 
                     elif joystick.get_button(2):
                         running = False
-                        main()
 
                     elif joystick.get_button(3):
                         clear_screen(screen, (0, 255, 0))
@@ -159,7 +158,7 @@ def main_menu(main):
 
                 if current_menu == "main":
                     if play_rect.collidepoint(mouse_pos):
-                        main()
+                        running = False
 
                     elif options_rect.collidepoint(mouse_pos):
                         options_menu(screen)
@@ -175,9 +174,5 @@ def main_menu(main):
                     current_menu = "main"
 
         pygame.display.update()
-
-    pygame.quit()
-    sys.exit()
-
 
 

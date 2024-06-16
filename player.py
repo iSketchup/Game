@@ -137,7 +137,7 @@ class Player():
             x_c = 0
             y_c = 0
 
-            if self.hp == width_hp:
+            if self.hp >= width_hp:
                 self.dead = True
             else:
                 hp_rect = pygame.Rect(x_c, y_c, width_hp - self.hp, height_hp)
