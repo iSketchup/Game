@@ -15,6 +15,7 @@ class Player():
 
         self.current_state = self.idle
         self.player_rect = self.current_state.frame_list[0].get_rect()
+        self.player_rect = rect
 
         self.last_update = pygame.time.get_ticks()
         self.update_rate = 140
@@ -116,7 +117,7 @@ class Player():
             hit = hit.hitbox
 
             if self.player_rect.colliderect(hit) and self.hitable:
-                self.hp += 10
+                self.hp += 5
                 self.current_state = self.hit
 
         except:
@@ -170,10 +171,11 @@ class Player():
         now = pygame.time.get_ticks()
 
         if now - self.last_update > self.update_rate:
-            self.hitable = True
+
             counter += 1
             self.last_update = now
-
+            if counter >= 3:
+                self.hitable = True
         return counter
 
 
@@ -195,11 +197,11 @@ class Player():
         for rect in self.hp_bars:
             pygame.draw.rect(screen, "green", rect)
 
-        try:
+        '''        try:
 
             pygame.draw.rect(screen, 'pink', self.hitbox)
         except TypeError:
-            pass
+            pass'''
 
 
     def update(self, screen, controllers):
