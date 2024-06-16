@@ -53,7 +53,7 @@ def main():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     print("esc gedrückt")
-                    menu.main_menu(screen)
+                    menu.main_menu()
 
             if event.type == pygame.JOYDEVICEADDED:
                 for controller in controllers:
