@@ -119,6 +119,7 @@ def main_menu(main):
                     elif joystick.get_button(2):
                         running = False
                         main()
+
                     elif joystick.get_button(3):
                         clear_screen(screen, (0, 255, 0))
 
@@ -153,8 +154,5 @@ def main_menu(main):
     pygame.quit()
     sys.exit()
 
-#if __name__ == '__main__':
-
- #   main_menu(main)
 
 
