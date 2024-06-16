@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="efda2cee-5790-4c04-a09f-fd5a0ebd0c9d" name="Changes" comment="damage is being currently implemented it does not work at all">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pygamegame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pygamegame.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="41087600bffb557626f91b73f989f251ec6e806c" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;iSketchup&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="874abab2-83b5-4534-a283-25b8c8b9e208" />
+        <option name="url" value="https://github.com/iSketchup/Game" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2fopiinsFZNzE5EOpMamKGjVQBE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test file.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kalul/OneDrive - HTL-Rankweil/pos/Schulsachenpos/pygamegame&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kalul\OneDrive - HTL-Rankweil\pos\Schulsachenpos\pygamegame" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kalul\OneDrive - HTL-Rankweil\pos\Schulsachenpos\pygamegame\Attachments\UI" />
+      <recent name="C:\Users\kalul\OneDrive - HTL-Rankweil\pos\Schulsachenpos\pygamegame\Attachments" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pygamegame" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="spritesheet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pygamegame" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spritesheet.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.spritesheet" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="efda2cee-5790-4c04-a09f-fd5a0ebd0c9d" name="Changes" comment="" />
+      <created>1714477413422</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714477413422</updated>
+    </task>
+    <task id="LOCAL-00001" summary="w">
+      <option name="closed" value="true" />
+      <created>1714477559041</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714477559042</updated>
+    </task>
+    <task id="LOCAL-00002" summary="jooooo">
+      <option name="closed" value="true" />
+      <created>1714478026456</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714478026456</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init">
+      <option name="closed" value="true" />
+      <created>1715509230130</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715509230130</updated>
+    </task>
+    <task id="LOCAL-00004" summary="init">
+      <option name="closed" value="true" />
+      <created>1715509476435</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715509476436</updated>
+    </task>
+    <task id="LOCAL-00005" summary="init">
+      <option name="closed" value="true" />
+      <created>1715511415957</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715511415957</updated>
+    </task>
+    <task id="LOCAL-00006" summary="init">
+      <option name="closed" value="true" />
+      <created>1715543302058</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715543302058</updated>
+    </task>
+    <task id="LOCAL-00007" summary="löschh">
+      <option name="closed" value="true" />
+      <created>1715892220108</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715892220108</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Started working on UI &#10;drew hearth.png as placeholder for hp">
+      <option name="closed" value="true" />
+      <created>1715894986039</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715894986039</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Event for deviadding made&#10;spritesheet class file made">
+      <option name="closed" value="true" />
+      <created>1715933496369</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715933496369</updated>
+    </task>
+    <task id="LOCAL-00010" summary="&#10;spritesheet class file made">
+      <option name="closed" value="true" />
+      <created>1715934853623</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715934853623</updated>
+    </task>
+    <task id="LOCAL-00011" summary="&#10;worked on spritesheet.py and tried it">
+      <option name="closed" value="true" />
+      <created>1715936973906</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715936973906</updated>
+    </task>
+    <task id="LOCAL-00012" summary="clean up and tries of the proper implementation of a heart ui9 thingy:)">
+      <option name="closed" value="true" />
+      <created>1716118864110</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716118864110</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added functionality for the heart to be animmated">
+      <option name="closed" value="true" />
+      <created>1716124763250</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716124763250</updated>
+    </task>
+    <task id="LOCAL-00014" summary="overhaul of player initialisation and controler input and outputs">
+      <option name="closed" value="true" />
+      <created>1716294780519</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716294780519</updated>
+    </task>
+    <task id="LOCAL-00015" summary="overhaul of player initialisation and controler input and outputs">
+      <option name="closed" value="true" />
+      <created>1716299521333</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716299521333</updated>
+    </task>
+    <task id="LOCAL-00016" summary="map">
+      <option name="closed" value="true" />
+      <created>1716357733846</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1716357733846</updated>
+    </task>
+    <task id="LOCAL-00017" summary="movement is way cleaner no and updating of player is only one function">
+      <option name="closed" value="true" />
+      <created>1716372552266</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1716372552266</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fulllscrenn but better:)">
+      <option name="closed" value="true" />
+      <created>1716373290296</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1716373290296</updated>
+    </task>
+    <task id="LOCAL-00019" summary="screen measurments made">
+      <option name="closed" value="true" />
+      <created>1716373900642</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1716373900642</updated>
+    </task>
+    <task id="LOCAL-00020" summary="started working on the player staying with the same rect even tho the controller gets disconnected">
+      <option name="closed" value="true" />
+      <created>1716541266930</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1716541266930</updated>
+    </task>
+    <task id="LOCAL-00021" summary="implemented map drawing">
+      <option name="closed" value="true" />
+      <created>1716842358582</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1716842358582</updated>
+    </task>
+    <task id="LOCAL-00022" summary="implemented map drawing">
+      <option name="closed" value="true" />
+      <created>1716844851712</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1716844851712</updated>
+    </task>
+    <task id="LOCAL-00023" summary="implemented map drawing">
+      <option name="closed" value="true" />
+      <created>1716844917244</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1716844917244</updated>
+    </task>
+    <task id="LOCAL-00024" summary="implemented map drawing">
+      <option name="closed" value="true" />
+      <created>1716875968351</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1716875968351</updated>
+    </task>
+    <task id="LOCAL-00025" summary="map shit disabeld&#10;player now are asocciated with preexisting rects so ther arent any spawning in midgame but they associate the wrong way round">
+      <option name="closed" value="true" />
+      <created>1716979044238</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1716979044239</updated>
+    </task>
+    <task id="LOCAL-00026" summary="new map implemented also the function for drawing now takes a measure input witch makes it mor flexible">
+      <option name="closed" value="true" />
+      <created>1717501594252</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1717501594252</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fixed the problems:)">
+      <option name="closed" value="true" />
+      <created>1717582531136</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717582531136</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fixed the problems:)">
+      <option name="closed" value="true" />
+      <created>1717582748087</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1717582748087</updated>
+    </task>
+    <task id="LOCAL-00029" summary=".">
+      <option name="closed" value="true" />
+      <created>1717582817174</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1717582817174</updated>
+    </task>
+    <task id="LOCAL-00030" summary="satrted the colision work">
+      <option name="closed" value="true" />
+      <created>1717653192753</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1717653192753</updated>
+    </task>
+    <task id="LOCAL-00031" summary="all tiles in the floor layer of the file are now put into a list so they can be used for colission checks">
+      <option name="closed" value="true" />
+      <created>1717666275249</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1717666275249</updated>
+    </task>
+    <task id="LOCAL-00032" summary="just realized that hitbox thingy doesn't work">
+      <option name="closed" value="true" />
+      <created>1717670394045</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1717670394045</updated>
+    </task>
+    <task id="LOCAL-00033" summary="now they do work">
+      <option name="closed" value="true" />
+      <created>1717749018508</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1717749018508</updated>
+    </task>
+    <task id="LOCAL-00034" summary="this time really started working on collision">
+      <option name="closed" value="true" />
+      <created>1717749060715</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1717749060715</updated>
+    </task>
+    <task id="LOCAL-00035" summary="collision is working!! at least inside of the gravity function im not sure how to implement it properly">
+      <option name="closed" value="true" />
+      <created>1717749442133</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1717749442133</updated>
+    </task>
+    <task id="LOCAL-00036" summary="upsizefaktor is no less curesd :)">
+      <option name="closed" value="true" />
+      <created>1717750015505</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1717750015505</updated>
+    </task>
+    <task id="LOCAL-00037" summary="upsizefaktor is no less curesd :)">
+      <option name="closed" value="true" />
+      <created>1717750644717</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1717750644717</updated>
+    </task>
+    <task id="LOCAL-00038" summary="hitting butt missing?">
+      <option name="closed" value="true" />
+      <created>1718108352442</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1718108352442</updated>
+    </task>
+    <task id="LOCAL-00039" summary="ranged butt hitting">
+      <option name="closed" value="true" />
+      <created>1718109609805</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1718109609805</updated>
+    </task>
+    <task id="LOCAL-00040" summary="lifabars now appear the right way just need to add the damage and then they're done">
+      <option name="closed" value="true" />
+      <created>1718188149166</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1718188149166</updated>
+    </task>
+    <task id="LOCAL-00041" summary="damage is being currently implemented it does not work at all">
+      <option name="closed" value="true" />
+      <created>1718188578530</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1718188578530</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="&#10;worked on spritesheet.py and tried it" />
+    <MESSAGE value="clean up and tries of the proper implementation of a heart ui9 thingy:)" />
+    <MESSAGE value="added functionality for the heart to be animmated" />
+    <MESSAGE value="overhaul of player initialisation and controler input and outputs" />
+    <MESSAGE value="map" />
+    <MESSAGE value="movement is way cleaner no and updating of player is only one function" />
+    <MESSAGE value="fulllscrenn but better:)" />
+    <MESSAGE value="screen measurments made" />
+    <MESSAGE value="started working on the player staying with the same rect even tho the controller gets disconnected" />
+    <MESSAGE value="implemented map drawing" />
+    <MESSAGE value="map shit disabeld&#10;player now are asocciated with preexisting rects so ther arent any spawning in midgame but they associate the wrong way round" />
+    <MESSAGE value="new map implemented also the function for drawing now takes a measure input witch makes it mor flexible" />
+    <MESSAGE value="fixed the problems:)" />
+    <MESSAGE value="." />
+    <MESSAGE value="satrted the colision work" />
+    <MESSAGE value="all tiles in the floor layer of the file are now put into a list so they can be used for colission checks" />
+    <MESSAGE value="just realized that hitbox thingy doesn't work" />
+    <MESSAGE value="now they do work" />
+    <MESSAGE value="this time really started working on collision" />
+    <MESSAGE value="collision is working!! at least inside of the gravity function im not sure how to implement it properly" />
+    <MESSAGE value="upsizefaktor is no less curesd :)" />
+    <MESSAGE value="hitting butt missing?" />
+    <MESSAGE value="ranged butt hitting" />
+    <MESSAGE value="lifabars now appear the right way just need to add the damage and then they're done" />
+    <MESSAGE value="damage is being currently implemented it does not work at all" />
+    <option name="LAST_COMMIT_MESSAGE" value="damage is being currently implemented it does not work at all" />
+  </component>
+</project>
