@@ -81,45 +81,38 @@ def options_menu(screen):
 
     pygame.display.flip()
 
-def ingame_menu(screen):
-
+def draw_second_screen(screen):
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
     clear_screen(screen, (0, 0, 0))
 
     bg = pygame.image.load("Attachments/menu/bg.png").convert_alpha()
-    quit = pygame.image.load("Attachments/menu/quit.png").convert_alpha()
-    menu = pygame.image.load(("Attachments/menu/quit.png"))
+    quit_button = pygame.image.load("Attachments/menu/quit.png").convert_alpha()
 
     scale_factor = 5
 
-
-
     bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
-    quit = pygame.transform.scale(quit, (quit.get_width() * scale_factor, quit.get_height() * scale_factor))
-
+    quit_button = pygame.transform.scale(quit_button, (
+    quit_button.get_width() * scale_factor, quit_button.get_height() * scale_factor))
 
     bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
-    quit_rect = quit.get_rect(center=(screen_width / 2, screen_height / 2))
+    quit_pos = [screen_width / 2 - quit_button.get_width() / 2, screen_height / 2 - quit_button.get_height() / 2]
+
+    quit_rect = quit_button.get_rect(center=(screen_width / 2, screen_height / 2))
 
     screen.blit(bg, bg_pos)
-    screen.blit(quit, quit_rect)
+    screen.blit(quit_button, quit_pos)
 
     pygame.display.flip()
+
+    return quit_rect
+
 
 
 def main_menu():
 
-    pygame.joystick.init()
-
-    joystick_count = pygame.joystick.get_count()
-    if joystick_count > 0:
-        joystick = pygame.joystick.Joystick(0)
-        joystick.init()
-
     screen = pygame.display.set_mode((0, 0))
-    pygame.display.set_caption("Joystick Test")
 
     current_menu = "main"
 
@@ -130,28 +123,6 @@ def main_menu():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-
-            elif event.type == pygame.JOYBUTTONDOWN:
-                if current_menu == "main":
-
-                    if joystick.get_button(0):
-                        options_menu(screen)
-                        current_menu = "options"
-
-                    elif joystick.get_button(1):
-                        sys.exit()
-
-                    elif joystick.get_button(2):
-                        running = False
-
-                    elif joystick.get_button(3):
-                        clear_screen(screen, (0, 255, 0))
-
-                elif current_menu == "options":
-                    if joystick.get_button(1):
-                        clear_screen(screen, (0, 0, 0))
-                        play_rect, options_rect, quit_rect = draw_main_screen(screen)
-                        current_menu = "main"
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
