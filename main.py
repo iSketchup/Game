@@ -37,8 +37,21 @@ def main():
     player2_rect = pygame.Rect(screen_width - tilesize * upsizefaktorw, 320 * upsizefaktorh, tilesize * upsizefaktorh, tilesize * upsizefaktorw)
     rect = player1_rect
 
+    keyboard = True
 
     menu.main_menu()
+
+    if keyboard:
+        for i in range(2):
+            for controller in controllers:
+
+                if len(controllers) % 2 == 0:
+                    rect = player1_rect
+                else:
+                    rect = player2_rect
+
+            stick = Player(i, floor, tilesize, controllers, screen_width, rect, keyboard)
+            controllers.append(stick)
 
     while running:
 
@@ -55,31 +68,20 @@ def main():
                     print("esc gedrückt")
                     menu.main_menu()
 
-            if event.type == pygame.JOYDEVICEADDED:
+            if event.type == pygame.JOYDEVICEADDED and not keyboard:
                 for controller in controllers:
+
                     if len(controllers) % 2 == 0:
                         rect = player1_rect
                     else:
                         rect = player2_rect
-
                 stick = Player(event.device_index, floor, tilesize, controllers, screen_width, rect,
-                               True)
+                               keyboard)
                 controllers.append(stick)
 
-
-
-
-        if False:
-            for rect in floor:
-                pygame.draw.rect(screen, 'pink', rect)
-
-
-#        try:
         for controller in controllers:
             controller.update(screen, controllers)
 
-#        except:
-#            print('no controller connected')
 
         pygame.display.update()
         clock.tick(60)

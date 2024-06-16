@@ -23,8 +23,11 @@ class Player():
         self.cur_frame = 0
 
         self.device_index = device_index
-        self.joystick = pygame.joystick.Joystick(device_index)
-        self.name = self.joystick.get_name()
+        try:
+            self.joystick = pygame.joystick.Joystick(device_index)
+            self.name = self.joystick.get_name()
+        except pygame.error:
+            self.joystick = None
 
         self.tilesize = tilesize
         self.controller_num = (len(controllers) % 2) + 1
@@ -174,11 +177,11 @@ class Player():
         hit_direction.x = self.player_rect.width * hit_direction.x
         hit_direction.y = self.player_rect.height * hit_direction.y
 
-
-        if self.joystick.get_button(3) and not self.keyboard:
-            self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
-                                      self.player_rect.height, self.player_rect.width)
-            self.current_state = self.attack
+        if not self.keyboard:
+            if self.joystick.get_button(3):
+                self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
+                                          self.player_rect.height, self.player_rect.width)
+                self.current_state = self.attack
 
         elif self.controller_num == 1:
             if self.pressed_keys[pygame.K_c]:
