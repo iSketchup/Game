@@ -42,10 +42,17 @@ def main():
 
         map.map_drawer(screen, map_list, map_data, upsizefaktorw, upsizefaktorh)
 
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    print("esc gedrückt")
+                    menu.main_menu(screen)
+
             if event.type == pygame.JOYDEVICEADDED:
                 for controller in controllers:
                     if len(controllers) % 2 == 0:
@@ -67,21 +74,21 @@ def main():
                 pygame.draw.rect(screen, 'pink', rect)
 
 
-        try:
-            hits_list = []
-            for controller in controllers:
-                controller.update(screen, controllers)
+#        try:
+        hits_list = []
+        for controller in controllers:
+            controller.update(screen, controllers)
 
 
-                hits = hits_list
-        except:
-            print('no controller connected')
+            hits = hits_list
+#        except:
+#            print('no controller connected')
 
         pygame.display.update()
         clock.tick(60)
 
 
 if __name__ == '__main__':
+    while True:
+        menu.main_menu(main)
 
-    menu.main_menu(main)
-    main()

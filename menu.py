@@ -81,6 +81,9 @@ def options_menu(screen):
 
     pygame.display.flip()
 
+def ingame_menu(screen):
+    pass
+
 def main_menu(main):
 
     pygame.joystick.init()
@@ -150,7 +153,8 @@ def main_menu(main):
     pygame.quit()
     sys.exit()
 
-if __name__ == '__main__':
-    main_menu(main)
+#if __name__ == '__main__':
+
+ #   main_menu(main)
 
 
