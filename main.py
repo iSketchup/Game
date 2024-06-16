@@ -29,7 +29,6 @@ def main():
 
     controllers = []
 
-    col_num = 0
     
     tilesize = 16
 
@@ -37,6 +36,9 @@ def main():
 
     player2_rect = pygame.Rect(screen_width - tilesize * upsizefaktorw, 320 * upsizefaktorh, tilesize * upsizefaktorh, tilesize * upsizefaktorw)
     rect = player1_rect
+
+
+    menu.main_menu()
 
     while running:
 
@@ -60,9 +62,9 @@ def main():
                     else:
                         rect = player2_rect
 
-                stick = Player(event.device_index, floor, tilesize, controllers, screen_width)
+                stick = Player(event.device_index, floor, tilesize, controllers, screen_width, rect)
                 controllers.append(stick)
-                col_num += 1
+
 
         for controller in controllers:
             if controller.dead:
@@ -89,6 +91,6 @@ def main():
 
 
 if __name__ == '__main__':
-    while True:
-        menu.main_menu(main)
+    main()
+
 

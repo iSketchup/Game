@@ -1,15 +1,15 @@
 import pygame
 from spritesheet import Spritesheet
 class Player():
-    def __init__(self, device_index, colidables, tilesize, controllers, screen_width):
+    def __init__(self, device_index, colidables, tilesize, controllers, screen_width, rect):
 
         self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
         self.run_right = Spritesheet('Attachments/knight/Run_right.png',(48, 64))
         self.run_left = Spritesheet('Attachments/knight/Run.png',(48, 64))
 
-        self.attack = Spritesheet('Attachments/knight/Attack1.png',(48, 64))
-        #self.jumping = Spritesheet(,(, ))
-        #self.hit = Spritesheet(,(, ))
+        self.attack = Spritesheet('Attachments/knight/Attack1.png',(64, 80))
+        self.jumping = Spritesheet('Attachments/knight/Jump.png',(64, 48))
+        self.hit = Spritesheet('Attachments/knight/Take Hit.png',(64, 64))
 
 
 
@@ -39,6 +39,7 @@ class Player():
         self.jumpheight = 100
 
         self.hp = self.tilesize * 15 / 100
+        self.hitable = True
 
         self.dead = False
 
@@ -57,10 +58,6 @@ class Player():
 
         elif self.move.x > 0 :
             self.current_state = self.run_right
-
-        else:
-            self.current_state = self.idle
-
 
         if self.player_rect.x + self.player_rect.width > self.screen_width:
             self.move.x = 0
@@ -118,8 +115,9 @@ class Player():
         try:
             hit = hit.hitbox
 
-            if self.player_rect.colliderect(hit):
-                self.hp += 1
+            if self.player_rect.colliderect(hit) and self.hitable:
+                self.hp += 10
+                self.current_state = self.hit
 
         except:
             pass
@@ -172,7 +170,7 @@ class Player():
         now = pygame.time.get_ticks()
 
         if now - self.last_update > self.update_rate:
-
+            self.hitable = True
             counter += 1
             self.last_update = now
 
@@ -187,6 +185,9 @@ class Player():
 
 
         screen.blit(self.current_state.frame_list[(self.cur_frame) % self.current_state.col_count], self.player_rect)
+
+        if (self.cur_frame) % self.current_state.col_count == 0:
+            self.current_state = self.idle
 
         for rect in self.damage_bars:
             pygame.draw.rect(screen, "red", rect)
