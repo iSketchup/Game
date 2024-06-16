@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 from spritesheet import Spritesheet
 class Player():
@@ -126,9 +128,11 @@ class Player():
 
 
     def hp_bar(self):
-
         height_hp = self.tilesize * 2
         width_hp = self.tilesize * 15
+
+        print(self.hp)
+        print(width_hp)
 
         self.hp_bars = []
         self.damage_bars = []
@@ -139,6 +143,9 @@ class Player():
 
             if self.hp >= width_hp:
                 self.dead = True
+                sys.exit()
+
+
             else:
                 hp_rect = pygame.Rect(x_c, y_c, width_hp - self.hp, height_hp)
                 self.hp_bars.append(hp_rect)
