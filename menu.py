@@ -50,7 +50,7 @@ def options_menu(screen):
 
     wasd = pygame.image.load("Attachments/menu/wasd.png").convert_alpha()
     ijkl = pygame.image.load("Attachments/menu/ijkl.png").convert_alpha()
-    moovement = pygame.image.load("Attachments/menu/moovement.png").convert_alpha()
+    moovement = pygame.image.load("Attachments/menu/movement.png").convert_alpha()
     llll = pygame.image.load("Attachments/menu/llll.png").convert_alpha()
     abxy = pygame.image.load("Attachments/menu/abxy.png").convert_alpha()
     bg = pygame.image.load("Attachments/menu/bg.png").convert_alpha()
@@ -82,9 +82,34 @@ def options_menu(screen):
     pygame.display.flip()
 
 def ingame_menu(screen):
-    pass
 
-def main_menu():
+    screen_width = screen.get_width()
+    screen_height = screen.get_height()
+
+    clear_screen(screen, (0, 0, 0))
+
+    bg = pygame.image.load("Attachments/menu/bg.png").convert_alpha()
+    quit = pygame.image.load("Attachments/menu/quit.png").convert_alpha()
+    menu = pygame.image.load(("Attachments/menu/quit.png"))
+
+    scale_factor = 5
+
+
+
+    bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
+    quit = pygame.transform.scale(quit, (quit.get_width() * scale_factor, quit.get_height() * scale_factor))
+
+
+    bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
+    quit_rect = quit.get_rect(center=(screen_width / 2, screen_height / 2))
+
+    screen.blit(bg, bg_pos)
+    screen.blit(quit, quit_rect)
+
+    pygame.display.flip()
+
+
+def main_menu(main):
 
     pygame.joystick.init()
 
@@ -118,6 +143,7 @@ def main_menu():
 
                     elif joystick.get_button(2):
                         running = False
+                        main()
 
                     elif joystick.get_button(3):
                         clear_screen(screen, (0, 255, 0))
@@ -133,7 +159,7 @@ def main_menu():
 
                 if current_menu == "main":
                     if play_rect.collidepoint(mouse_pos):
-                        running = False
+                        main()
 
                     elif options_rect.collidepoint(mouse_pos):
                         options_menu(screen)
@@ -150,6 +176,8 @@ def main_menu():
 
         pygame.display.update()
 
+    pygame.quit()
+    sys.exit()
 
 
 
