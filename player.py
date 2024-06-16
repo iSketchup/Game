@@ -1,11 +1,14 @@
 import pygame
 from spritesheet import Spritesheet
 class Player():
-    def __init__(self, device_index, rect, colidables, tilesize, controllers, screen_width):
+    def __init__(self, device_index, colidables, tilesize, controllers, screen_width):
 
-        self.current_state = Spritesheet('Attachments/knight/Idle.png', (48, 64))
+        self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
+        self.attack
+        self.jump_img
 
 
+        self.current_state = self.idle
         self.player_rect = self.current_state.frame_list[0].get_rect()
 
         self.last_update = pygame.time.get_ticks()
@@ -82,6 +85,7 @@ class Player():
         if self.joystick.get_button(3):
             self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                       self.player_rect.height, self.player_rect.width)
+            self.current_state
 
     def being_hit(self):
 
@@ -170,7 +174,7 @@ class Player():
         print(self.current_state.col_count)
 
 
-        screen.blit(self.current_state.frame_list[(self.cur_frame) % self.cur_frame.col_count], self.player_rect)
+        screen.blit(self.current_state.frame_list[(self.cur_frame) % self.current_state.col_count], self.player_rect)
 
         for rect in self.damage_bars:
             pygame.draw.rect(screen, "red", rect)

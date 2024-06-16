@@ -57,7 +57,7 @@ def main():
                     else:
                         rect = player2_rect
 
-                stick = Player(event.device_index, rect, floor, tilesize, controllers, screen_width)
+                stick = Player(event.device_index, floor, tilesize, controllers, screen_width)
                 controllers.append(stick)
                 col_num += 1
 
