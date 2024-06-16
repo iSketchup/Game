@@ -1,4 +1,3 @@
-import time
 import pygame
 import sys
 
@@ -21,28 +20,29 @@ def draw_main_screen(screen):
     options = pygame.transform.scale(options, (options.get_width() * scale_factor, options.get_height() * scale_factor))
     quit = pygame.transform.scale(quit, (quit.get_width() * scale_factor, quit.get_height() * scale_factor))
 
-    play_pos = [screen_width / 2 - play.get_width() / 2, screen_height / 2 - 200]
-    options_pos = [screen_width / 2 - options.get_width() / 2, screen_height / 2 - 100]
-    quit_pos = [screen_width / 2 - quit.get_width() / 2, screen_height / 2]
+    play_rect = play.get_rect(center=(screen_width / 2, screen_height / 2 - 200))
+    options_rect = options.get_rect(center=(screen_width / 2, screen_height / 2 - 100))
+    quit_rect = quit.get_rect(center=(screen_width / 2, screen_height / 2))
 
-    screen.blit(play, play_pos)
-    screen.blit(options, options_pos)
-    screen.blit(quit, quit_pos)
+    screen.blit(play, play_rect)
+    screen.blit(options, options_rect)
+    screen.blit(quit, quit_rect)
 
     button_spacing = 20
 
-    screen.blit(a_button, (play_pos[0] + play.get_width() + button_spacing, play_pos[1] + a_button.get_width() / 2))
-    screen.blit(y_button, (options_pos[0] + options.get_width() + button_spacing, options_pos[1] + y_button.get_width() / 4))
-    screen.blit(b_button, (quit_pos[0] + quit.get_width() + button_spacing, quit_pos[1] + b_button.get_width() / 4))
+    screen.blit(a_button, (play_rect.right + button_spacing, play_rect.centery - a_button.get_height() / 2))
+    screen.blit(y_button, (options_rect.right + button_spacing, options_rect.centery - y_button.get_height() / 4))
+    screen.blit(b_button, (quit_rect.right + button_spacing, quit_rect.centery - b_button.get_height() / 4))
 
     pygame.display.flip()
+
+    return play_rect, options_rect, quit_rect
 
 def clear_screen(screen, color):
     screen.fill(color)
     pygame.display.flip()
 
 def options_menu(screen):
-
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
@@ -82,7 +82,7 @@ def options_menu(screen):
     pygame.display.flip()
 
 def main_menu(main):
-    pygame.init()
+
     pygame.joystick.init()
 
     joystick_count = pygame.joystick.get_count()
@@ -90,12 +90,12 @@ def main_menu(main):
         joystick = pygame.joystick.Joystick(0)
         joystick.init()
 
-    screen = pygame.display.set_mode((0,0))
+    screen = pygame.display.set_mode((0, 0))
     pygame.display.set_caption("Joystick Test")
 
     current_menu = "main"
 
-    draw_main_screen(screen)
+    play_rect, options_rect, quit_rect = draw_main_screen(screen)
 
     running = True
     while running:
@@ -105,21 +105,45 @@ def main_menu(main):
 
             elif event.type == pygame.JOYBUTTONDOWN:
                 if current_menu == "main":
+
                     if joystick.get_button(0):
                         options_menu(screen)
                         current_menu = "options"
+
                     elif joystick.get_button(1):
                         sys.exit()
+
                     elif joystick.get_button(2):
                         running = False
                         main()
                     elif joystick.get_button(3):
                         clear_screen(screen, (0, 255, 0))
+
                 elif current_menu == "options":
                     if joystick.get_button(1):
                         clear_screen(screen, (0, 0, 0))
-                        draw_main_screen(screen)
+                        play_rect, options_rect, quit_rect = draw_main_screen(screen)
                         current_menu = "main"
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = event.pos
+
+                if current_menu == "main":
+                    if play_rect.collidepoint(mouse_pos):
+                        main()
+
+                    elif options_rect.collidepoint(mouse_pos):
+                        options_menu(screen)
+                        current_menu = "options"
+
+                    elif quit_rect.collidepoint(mouse_pos):
+                        pygame.quit()
+                        sys.exit()
+
+                elif current_menu == "options":
+                    clear_screen(screen, (0, 0, 0))
+                    play_rect, options_rect, quit_rect = draw_main_screen(screen)
+                    current_menu = "main"
 
         pygame.display.update()
 
@@ -127,10 +151,6 @@ def main_menu(main):
     sys.exit()
 
 if __name__ == '__main__':
-    main_menu()
-
-
-
-
+    main_menu(main)
 
 
