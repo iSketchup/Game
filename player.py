@@ -3,11 +3,13 @@ from spritesheet import Spritesheet
 class Player():
     def __init__(self, device_index, rect, colidables, tilesize, controllers, screen_width):
 
-        self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
-        self.player_rect = self.idle.frame_list[0].get_rect()
+        self.current_state = Spritesheet('Attachments/knight/Idle.png', (48, 64))
+
+
+        self.player_rect = self.current_state.frame_list[0].get_rect()
 
         self.last_update = pygame.time.get_ticks()
-        self.update_rate = 60
+        self.update_rate = 140
         self.cur_frame = 0
 
         self.device_index = device_index
@@ -149,11 +151,14 @@ class Player():
 
     def animat(self, counter):
         now = pygame.time.get_ticks()
+        print(self.last_update)
+        print(now)
 
 
-        if self.last_update - now > self.update_rate:
+        if now - self.last_update > self.update_rate:
 
             counter += 1
+            self.last_update = now
 
         return counter
 
@@ -162,7 +167,10 @@ class Player():
 
         self.cur_frame = self.animat(self.cur_frame)
 
-        screen.blit(self.idle.frame_list[self.cur_frame], self.player_rect)
+        print(self.current_state.col_count)
+
+
+        screen.blit(self.current_state.frame_list[(self.cur_frame) % self.cur_frame.col_count], self.player_rect)
 
         for rect in self.damage_bars:
             pygame.draw.rect(screen, "red", rect)

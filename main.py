@@ -14,8 +14,6 @@ def main():
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-
-
     map_list, map_data = map.map_lister('Attachments/map/tilesets_and_maps/new tilemap/mapabc.tmx')
     measurew = map_data.tilewidth
     measureh = map_data.tileheight
@@ -77,7 +75,7 @@ def main():
         hits_list = []
         for controller in controllers:
             controller.update(screen, controllers)
-            print(controller.controller_num)
+
 
             hits = hits_list
 #        except:
