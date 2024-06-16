@@ -1,14 +1,8 @@
 import sys, pygame
 from player import Player
-from spritesheet import Spritesheet
+
 import map
 import menu
-
-
-def heart(screen):
-    heart = Spritesheet('Attachments/UI/heart.png', (320, 320))
-    heart.draw(screen)
-
 
 
 def main():
@@ -82,7 +76,7 @@ def main():
 #        try:
         hits_list = []
         for controller in controllers:
-            controller.displayer(screen, controllers)
+            controller.update(screen, controllers)
             print(controller.controller_num)
 
             hits = hits_list
