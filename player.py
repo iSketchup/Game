@@ -4,6 +4,7 @@ import pygame
 
 import menu
 from spritesheet import Spritesheet
+
 class Player():
     def __init__(self, device_index, colidables, tilesize, controllers, screen, rect, keyboard):
 

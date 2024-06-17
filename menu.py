@@ -24,12 +24,10 @@ def death_screen(screen):
         scale_factor = 5
 
         bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
-        player1 = pygame.transform.scale(player1, (player1.get_width() * scale_factor * 5, player1.get_height() * scale_factor ))
-        player2 = pygame.transform.scale(player2, (player2.get_width() * scale_factor * 5, player2.get_height() * scale_factor ))
 
         bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
-        player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2 - 200))
-        player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2 - 200))
+        player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2 ))
+        player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2 ))
 
         screen.blit(bg, bg_pos)
         screen.blit(player1, player1_rect)
@@ -37,6 +35,7 @@ def death_screen(screen):
 
         if pygame.key.get_pressed() != []:
             break
+    return player1_rect, player2_rect
 
 def draw_main_screen(screen):
 
@@ -142,6 +141,7 @@ def main_menu():
     current_menu = "main"
 
     play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(screen)
+    player1_rect, player2_rect = death_screen1(screen)
 
     running = True
     while running:
@@ -160,6 +160,10 @@ def main_menu():
                         options_menu(screen)
                         current_menu = "options"
 
+                    elif player1_rect.collidepoint(mouse_pos):
+                        death_screen1(screen)
+                        current_menu = "death"
+
                     elif quit_rect.collidepoint(mouse_pos):
                         pygame.quit()
                         sys.exit()
@@ -174,6 +178,13 @@ def main_menu():
                     clear_screen(screen, (0, 0, 0))
                     play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(screen)
                     current_menu = "main"
+
+                elif current_menu == "death":
+                    clear_screen(screen, (0, 0, 0))
+                    play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(
+                        screen)
+                    current_menu = "main"
+
 
         pygame.display.update()
     return keyboard
