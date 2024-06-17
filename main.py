@@ -33,22 +33,10 @@ def main():
     
     tilesize = 16
 
-    player1_rect = pygame.Rect(0, 320 * upsizefaktorh, tilesize * upsizefaktorh, tilesize * upsizefaktorw)
-
-    player2_rect = pygame.Rect(screen_width - tilesize * upsizefaktorw, 320 * upsizefaktorh, tilesize * upsizefaktorh, tilesize * upsizefaktorw)
-    rect = player1_rect
-
-
     keyboard = menu.main_menu()
 
     if keyboard:
         for i in range(2):
-            for controller in controllers:
-
-                if len(controllers) % 2 == 0:
-                    rect = player1_rect
-                else:
-                    rect = player2_rect
 
             stick = Player(i, floor, tilesize, controllers, screen, keyboard, upsizefaktorw)
             controllers.append(stick)
@@ -69,12 +57,6 @@ def main():
                     menu.main_menu()
 
             if event.type == pygame.JOYDEVICEADDED and not keyboard:
-                for controller in controllers:
-
-                    if len(controllers) % 2 == 0:
-                        rect = player1_rect
-                    else:
-                        rect = player2_rect
                 stick = Player(event.device_index, floor, tilesize, controllers, screen,
                                keyboard, upsizefaktorw)
                 controllers.append(stick)
