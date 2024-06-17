@@ -1,5 +1,4 @@
-import sys
-
+import time
 import pygame
 
 import menu
@@ -51,6 +50,11 @@ class Player():
         self.hp = self.tilesize * 15 / 100
         self.dead = False
         self.keyboard = keyboard
+
+        self.done = False
+        self.rekord = None
+        self.currenttime = None
+        self.starting_time = time.perf_counter()
 
         if self.controller_num == 2:
             self.player_rect.x = self.screen_width - tilesize * upsizefaktorw
@@ -318,7 +322,7 @@ class Player():
         self.displayer()
 
         if self.dead == True:
-            menu.death_screen(self.screen, self.controller_num)
+            self.done, self.rekord, self.currenttime = menu.death_screen(self.screen, self.controller_num, self.done, self.rekord, self.currenttime, self.starting_time)
 
 
 

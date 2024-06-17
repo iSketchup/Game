@@ -5,54 +5,80 @@ import pygame
 import sys
 
 
-def file_reader(name):
+def file_reader(name, start):
     with open(name, 'r') as file:
-        line = csv.reader(file)
-        print(line)
-        line = next(line, 0)
 
-    now = str(time.perf_counter())
+        line = file.readline()
 
+    now = time.perf_counter()
 
-    last = file_reader('highscore.csv')
-
-    with open('highscore.csv', 'w') as file:
-        if float(last[0]) <= float(now):
-            file.write(now)
+    now = now - start
 
 
-    return line
-def death_screen(screen, looser_num):
+    with open(name, 'w') as file:
+        if float(line) <= float(now):
+            file.write(str(now))
 
-    while True:
+    return line, now
 
-        screen_width = screen.get_width()
-        screen_height = screen.get_height()
 
-        bg = pygame.image.load("Attachments/menu/bg.png").convert_alpha()
-        player1 = pygame.image.load("Attachments/menu/player1.png").convert_alpha()
-        player2 = pygame.image.load("Attachments/menu/player2.png").convert_alpha()
+def text_objects(text):
+    font = pygame.font.SysFont('Courier New', 30)
+    textSurface = font.render(text, True, 'black')
+    textSurface = textSurface.convert_alpha()
+    return textSurface, textSurface.get_rect()
 
-        scale_factor = 5
+def death_screen(screen, looser_num, done, rekord, currenttime, start):
 
-        bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
-        player1 = pygame.transform.scale(player1, (scale_factor * player1.get_width(), scale_factor * player1.get_height()))
-        player2 = pygame.transform.scale(player2, (scale_factor * player2.get_width(), scale_factor * player2.get_height()))
+    if not done:
+        rekord, currenttime = file_reader('Attachments/highscore.csv', start)
+        currenttime = float(currenttime)
 
-        bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
-        player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2 ))
-        player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2 ))
 
-        screen.blit(bg, bg_pos)
-        if looser_num == 2:
-            screen.blit(player1, player1_rect)
-        else:
-            screen.blit(player2, player2_rect)
 
-        if pygame.key.get_pressed() != []:
-            break
+    if float(rekord) > currenttime:
+        txtsurf, txt_rect = text_objects(f'{round(currenttime,2)} beats the Highscore!')
+        done = True
 
-    return player1_rect, player2_rect
+    else:
+        txtsurf, txt_rect = text_objects(f'{round(currenttime,2)} does not beat the Highscore!')
+        done = True
+
+    screen_width = screen.get_width()
+    screen_height = screen.get_height()
+
+    x = (screen_width / 2)
+    y = (screen_height / 3 * 2)
+
+
+
+    bg = pygame.image.load("Attachments/menu/bg.png").convert_alpha()
+    player1 = pygame.image.load("Attachments/menu/player1.png").convert_alpha()
+    player2 = pygame.image.load("Attachments/menu/player2.png").convert_alpha()
+
+    scale_factor = 5
+
+    bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
+    player1 = pygame.transform.scale(player1, (scale_factor * player1.get_width(), scale_factor * player1.get_height()))
+    player2 = pygame.transform.scale(player2, (scale_factor * player2.get_width(), scale_factor * player2.get_height()))
+
+    bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
+    player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2 ))
+    player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2 ))
+
+    txt_rect.centerx = x
+    txt_rect.centery = player2_rect.bottom + 20
+
+    screen.blit(bg, bg_pos)
+
+    if looser_num == 2:
+        screen.blit(player1, player1_rect)
+    else:
+        screen.blit(player2, player2_rect)
+
+    screen.blit(txtsurf, txt_rect)
+    return done, rekord, currenttime
+
 
 def draw_main_screen(screen):
 
