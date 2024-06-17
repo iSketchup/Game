@@ -7,12 +7,12 @@ from spritesheet import Spritesheet
 class Player():
     def __init__(self, device_index, colidables, tilesize, controllers, screen, upsizefaktorw, keyboard):
 
-        self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
-        self.run_right = Spritesheet('Attachments/knight/Run_right.png',(48, 64))
-        self.run_left = Spritesheet('Attachments/knight/Run.png',(48, 64))
-        self.attack = Spritesheet('Attachments/knight/Attack1.png',(64, 80))
-        self.jumping = Spritesheet('Attachments/knight/Jump.png',(48, 64))
-        self.hit = Spritesheet('Attachments/knight/Take Hit.png',(64, 64))
+        self.idle = Spritesheet('assets/knight/Idle.png', (48, 64))
+        self.run_right = Spritesheet('assets/knight/Run_right.png',(48, 64))
+        self.run_left = Spritesheet('assets/knight/Run.png',(48, 64))
+        self.attack = Spritesheet('assets/knight/Attack1.png',(64, 80))
+        self.jumping = Spritesheet('assets/knight/Jump.png',(48, 64))
+        self.hit = Spritesheet('assets/knight/Take Hit.png',(64, 64))
 
         self.current_state = self.idle
         self.player_rect = self.idle.frame_list[0].get_rect()
