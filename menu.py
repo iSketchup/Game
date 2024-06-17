@@ -175,11 +175,7 @@ def main_menu():
                     elif options_rect.collidepoint(mouse_pos):
                         options_menu(screen)
                         current_menu = "options"
-                        '''
-                        elif player1_rect.collidepoint(mouse_pos):
-                            death_screen(screen)
-                            current_menu = "death"
-                        '''
+
                     elif quit_rect.collidepoint(mouse_pos):
                         pygame.quit()
                         sys.exit()
