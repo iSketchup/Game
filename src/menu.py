@@ -31,7 +31,7 @@ def text_objects(text):
 def death_screen(screen, looser_num, done, rekord, currenttime, start):
 
     if not done:
-        rekord, currenttime = file_reader('assets/highscore.csv', start)
+        rekord, currenttime = file_reader('src/assets/highscore.csv', start)
         currenttime = float(currenttime)
 
 
@@ -52,9 +52,9 @@ def death_screen(screen, looser_num, done, rekord, currenttime, start):
 
 
 
-    bg = pygame.image.load("assets/menu/bg.png").convert_alpha()
-    player1 = pygame.image.load("assets/menu/player1.png").convert_alpha()
-    player2 = pygame.image.load("assets/menu/player2.png").convert_alpha()
+    bg = pygame.image.load("src/assets/menu/bg.png").convert_alpha()
+    player1 = pygame.image.load("src/assets/menu/player1.png").convert_alpha()
+    player2 = pygame.image.load("src/assets/menu/player2.png").convert_alpha()
 
     scale_factor = 5
 
@@ -85,17 +85,17 @@ def draw_main_screen(screen):
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    a_button = pygame.image.load("assets/menu/a_button.png").convert_alpha()
-    b_button = pygame.image.load("assets/menu/b_button.png").convert_alpha()
-    y_button = pygame.image.load("assets/menu/y_button.png").convert_alpha()
+    a_button = pygame.image.load("src/assets/menu/a_button.png").convert_alpha()
+    b_button = pygame.image.load("src/assets/menu/b_button.png").convert_alpha()
+    y_button = pygame.image.load("src/assets/menu/y_button.png").convert_alpha()
 
-    play = pygame.image.load("assets/menu/play.png").convert_alpha()
-    options = pygame.image.load("assets/menu/options.png").convert_alpha()
-    quit = pygame.image.load("assets/menu/quit.png").convert_alpha()
+    play = pygame.image.load("src/assets/menu/play.png").convert_alpha()
+    options = pygame.image.load("src/assets/menu/options.png").convert_alpha()
+    quit = pygame.image.load("src/assets/menu/quit.png").convert_alpha()
 
-    start_with = pygame.image.load("assets/menu/start with.png").convert_alpha()
-    keyboard = pygame.image.load("assets/menu/keyboard.png").convert_alpha()
-    controller = pygame.image.load("assets/menu/controller.png").convert_alpha()
+    start_with = pygame.image.load("src/assets/menu/start with.png").convert_alpha()
+    keyboard = pygame.image.load("src/assets/menu/keyboard.png").convert_alpha()
+    controller = pygame.image.load("src/assets/menu/controller.png").convert_alpha()
 
     scale_factor = 5
 
@@ -140,12 +140,12 @@ def options_menu(screen):
 
     clear_screen(screen, (0, 0, 0))
 
-    wasd = pygame.image.load("assets/menu/wasd.png").convert_alpha()
-    ijkl = pygame.image.load("assets/menu/ijkl.png").convert_alpha()
-    moovement = pygame.image.load("assets/menu/movement.png").convert_alpha()
-    llll = pygame.image.load("assets/menu/llll.png").convert_alpha()
-    abxy = pygame.image.load("assets/menu/abxy.png").convert_alpha()
-    bg = pygame.image.load("assets/menu/bg.png").convert_alpha()
+    wasd = pygame.image.load("src/assets/menu/wasd.png").convert_alpha()
+    ijkl = pygame.image.load("src/assets/menu/ijkl.png").convert_alpha()
+    moovement = pygame.image.load("src/assets/menu/movement.png").convert_alpha()
+    llll = pygame.image.load("src/assets/menu/llll.png").convert_alpha()
+    abxy = pygame.image.load("src/assets/menu/abxy.png").convert_alpha()
+    bg = pygame.image.load("src/assets/menu/bg.png").convert_alpha()
 
     scale_factor = 5
 
