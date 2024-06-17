@@ -31,7 +31,7 @@ def text_objects(text):
 def death_screen(screen, looser_num, done, rekord, currenttime, start):
 
     if not done:
-        rekord, currenttime = file_reader('assets/highscore.csv', start)
+        rekord, currenttime = file_reader('src/assets/highscore.csv', start)
         currenttime = float(currenttime)
 
 
