@@ -1,18 +1,29 @@
+import csv
 import time
 
 import pygame
 import sys
 
+
+def file_reader(name):
+    with open(name, 'r') as file:
+        line = csv.reader(file)
+        print(line)
+        line = next(line, 0)
+        return line
 def death_screen(screen):
 
-    with open('Attachments/highscore.txt', 'w') as file:
-        for line in file:
-            if line == '':
-                line = time.perf_counter()
+    now = str(time.perf_counter())
 
 
+    last = file_reader('highscore.csv')
+
+    with open('highscore.csv', 'w') as file:
+        if float(last[0]) <= float(now):
+            file.write(now)
 
     time.sleep(1)
+
     while True:
 
         screen_width = screen.get_width()

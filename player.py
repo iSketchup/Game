@@ -6,26 +6,25 @@ import menu
 from spritesheet import Spritesheet
 
 class Player():
-    def __init__(self, device_index, colidables, tilesize, controllers, screen, rect, keyboard):
+    def __init__(self, device_index, colidables, tilesize, controllers, screen, upsizefaktorw, keyboard):
 
         self.idle = Spritesheet('Attachments/knight/Idle.png', (48, 64))
         self.run_right = Spritesheet('Attachments/knight/Run_right.png',(48, 64))
         self.run_left = Spritesheet('Attachments/knight/Run.png',(48, 64))
-
         self.attack = Spritesheet('Attachments/knight/Attack1.png',(64, 80))
         self.jumping = Spritesheet('Attachments/knight/Jump.png',(48, 64))
         self.hit = Spritesheet('Attachments/knight/Take Hit.png',(64, 64))
 
-
-
         self.current_state = self.idle
-        self.player_rect = rect
+        self.player_rect = self.idle.frame_list[0].get_rect()
+
 
         self.last_update = pygame.time.get_ticks()
         self.update_rate = 140
         self.cur_frame = 0
 
         self.device_index = device_index
+
         try:
             self.joystick = pygame.joystick.Joystick(device_index)
             self.name = self.joystick.get_name()
@@ -46,12 +45,15 @@ class Player():
 
         self.collidables = colidables
 
-        self.ground = True
+        self.ground = False
         self.jumpheight = 100
 
         self.hp = self.tilesize * 15 / 100
         self.dead = False
         self.keyboard = keyboard
+
+        if self.controller_num == 2:
+            self.player_rect.x = self.screen_width - tilesize * upsizefaktorw
 
 
 
@@ -139,6 +141,7 @@ class Player():
 
         for rect in self.collidables:
             if self.player_rect.colliderect(rect):
+                self.player_rect.y = self.screen_height - (self.player_rect.height + (self.screen_height - rect.y))
                 self.ground = True
 
         if not self.ground:

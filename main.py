@@ -50,7 +50,7 @@ def main():
                 else:
                     rect = player2_rect
 
-            stick = Player(i, floor, tilesize, controllers, screen, rect, keyboard)
+            stick = Player(i, floor, tilesize, controllers, screen, keyboard, upsizefaktorw)
             controllers.append(stick)
 
     while running:
@@ -75,8 +75,8 @@ def main():
                         rect = player1_rect
                     else:
                         rect = player2_rect
-                stick = Player(event.device_index, floor, tilesize, controllers, screen, rect,
-                               keyboard)
+                stick = Player(event.device_index, floor, tilesize, controllers, screen,
+                               keyboard, upsizefaktorw)
                 controllers.append(stick)
 
         for controller in controllers:
