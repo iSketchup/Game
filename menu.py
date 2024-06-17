@@ -10,8 +10,6 @@ def file_reader(name):
         line = csv.reader(file)
         print(line)
         line = next(line, 0)
-        return line
-def death_screen(screen):
 
     now = str(time.perf_counter())
 
@@ -22,7 +20,9 @@ def death_screen(screen):
         if float(last[0]) <= float(now):
             file.write(now)
 
-    time.sleep(1)
+
+    return line
+def death_screen(screen, looser_num):
 
     while True:
 
@@ -36,14 +36,18 @@ def death_screen(screen):
         scale_factor = 5
 
         bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
+        player1 = pygame.transform.scale(player1, (scale_factor * player1.get_width(), scale_factor * player1.get_height()))
+        player2 = pygame.transform.scale(player2, (scale_factor * player2.get_width(), scale_factor * player2.get_height()))
 
         bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
         player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2 ))
         player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2 ))
 
         screen.blit(bg, bg_pos)
-        screen.blit(player1, player1_rect)
-        screen.blit(player2, player2_rect)
+        if looser_num == 2:
+            screen.blit(player1, player1_rect)
+        else:
+            screen.blit(player2, player2_rect)
 
         if pygame.key.get_pressed() != []:
             break
@@ -154,7 +158,6 @@ def main_menu():
     current_menu = "main"
 
     play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(screen)
-    player1_rect, player2_rect = death_screen(screen)
 
     running = True
     while running:
@@ -172,11 +175,11 @@ def main_menu():
                     elif options_rect.collidepoint(mouse_pos):
                         options_menu(screen)
                         current_menu = "options"
-
-                    elif player1_rect.collidepoint(mouse_pos):
-                        death_screen(screen)
-                        current_menu = "death"
-
+                        '''
+                        elif player1_rect.collidepoint(mouse_pos):
+                            death_screen(screen)
+                            current_menu = "death"
+                        '''
                     elif quit_rect.collidepoint(mouse_pos):
                         pygame.quit()
                         sys.exit()

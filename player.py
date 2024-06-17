@@ -262,7 +262,7 @@ class Player():
             x_c = self.screen_width - width_hp
             y_c = 0
 
-            if self.hp == 0:
+            if self.hp >= width_hp:
                 self.dead = True
             else:
                 hp_rect = pygame.Rect(x_c, y_c, width_hp - self.hp, height_hp)
@@ -318,7 +318,7 @@ class Player():
         self.displayer()
 
         if self.dead == True:
-            menu.death_screen(self.screen)
+            menu.death_screen(self.screen, self.controller_num)
 
 
 
