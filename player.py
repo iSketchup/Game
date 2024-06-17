@@ -314,7 +314,7 @@ class Player():
 
         self.displayer()
 
-        if self.dead:
+        if self.dead == True:
             menu.death_screen(self.screen)
 
 

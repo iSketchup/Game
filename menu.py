@@ -11,6 +11,7 @@ def death_screen(screen):
                 line = time.perf_counter()
 
 
+
     time.sleep(1)
     while True:
 
@@ -35,6 +36,7 @@ def death_screen(screen):
 
         if pygame.key.get_pressed() != []:
             break
+
     return player1_rect, player2_rect
 
 def draw_main_screen(screen):
@@ -141,7 +143,7 @@ def main_menu():
     current_menu = "main"
 
     play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(screen)
-    player1_rect, player2_rect = death_screen1(screen)
+    player1_rect, player2_rect = death_screen(screen)
 
     running = True
     while running:
@@ -161,7 +163,7 @@ def main_menu():
                         current_menu = "options"
 
                     elif player1_rect.collidepoint(mouse_pos):
-                        death_screen1(screen)
+                        death_screen(screen)
                         current_menu = "death"
 
                     elif quit_rect.collidepoint(mouse_pos):
@@ -180,6 +182,7 @@ def main_menu():
                     current_menu = "main"
 
                 elif current_menu == "death":
+
                     clear_screen(screen, (0, 0, 0))
                     play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(
                         screen)
