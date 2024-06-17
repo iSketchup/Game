@@ -5,7 +5,7 @@ import sys
 
 def death_screen(screen):
 
-    with open('Attachments/highscore', 'w') as file:
+    with open('Attachments/highscore.txt', 'w') as file:
         for line in file:
             if line == '':
                 line = time.perf_counter()
