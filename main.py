@@ -38,7 +38,7 @@ def main():
     if keyboard:
         for i in range(2):
 
-            stick = Player(i, floor, tilesize, controllers, screen, keyboard, upsizefaktorw)
+            stick = Player(i, floor, tilesize, controllers, screen, upsizefaktorw, keyboard)
             controllers.append(stick)
 
     while running:
@@ -53,12 +53,11 @@ def main():
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    print("esc gedrückt")
                     menu.main_menu()
 
             if event.type == pygame.JOYDEVICEADDED and not keyboard:
-                stick = Player(event.device_index, floor, tilesize, controllers, screen,
-                               keyboard, upsizefaktorw)
+                stick = Player(event.device_index, floor, tilesize, controllers, screen, upsizefaktorw,
+                               keyboard)
                 controllers.append(stick)
 
         for controller in controllers:

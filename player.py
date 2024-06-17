@@ -24,11 +24,7 @@ class Player():
 
         self.device_index = device_index
 
-        try:
-            self.joystick = pygame.joystick.Joystick(device_index)
-            self.name = self.joystick.get_name()
-        except pygame.error:
-            self.joystick = None
+
 
         self.tilesize = tilesize
         self.controller_num = (len(controllers) % 2) + 1
@@ -45,11 +41,17 @@ class Player():
         self.collidables = colidables
 
         self.ground = False
-        self.jumpheight = 100
+        self.jumpheight = 250
 
         self.hp = self.tilesize * 15 / 100
         self.dead = False
         self.keyboard = keyboard
+
+        if not self.keyboard:
+            self.joystick = pygame.joystick.Joystick(device_index)
+            self.name = self.joystick.get_name()
+        else:
+            self.joystick = None
 
         self.done = False
         self.rekord = None
@@ -62,17 +64,19 @@ class Player():
 
 
     def x_movement(self):
+        print(self.keyboard)
 
         if not self.keyboard:
+            print('asdfasdf')
             self.move.x = self.joystick.get_axis(0) * self.speed
 
             if abs(self.move.x) < 0.05:
                 self.move.x = 0
 
-            if self.move.x < 0 :
+            if self.move.x < 0:
                 self.current_state = self.run_left
 
-            elif self.move.x > 0 :
+            elif self.move.x > 0:
                 self.current_state = self.run_right
 
             if self.player_rect.x + self.player_rect.width > self.screen_width:
@@ -236,9 +240,6 @@ class Player():
         height_hp = self.tilesize * 2
         width_hp = self.tilesize * 15
 
-        print(self.hp)
-        print(width_hp)
-
         self.hp_bars = []
         self.damage_bars = []
 
@@ -291,9 +292,6 @@ class Player():
     def displayer(self):
 
         self.cur_frame = self.animat(self.cur_frame)
-
-        print(self.current_state.col_count)
-
 
         self.screen.blit(self.current_state.frame_list[(self.cur_frame) % self.current_state.col_count], self.player_rect)
 
