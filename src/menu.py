@@ -63,8 +63,8 @@ def death_screen(screen, looser_num, done, rekord, currenttime, start):
     player2 = pygame.transform.scale(player2, (scale_factor * player2.get_width(), scale_factor * player2.get_height()))
 
     bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
-    player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2 ))
-    player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2 ))
+    player1_rect = player1.get_rect(center=(screen_width / 2, screen_height / 2))
+    player2_rect = player2.get_rect(center=(screen_width / 2, screen_height / 2))
 
     txt_rect.centerx = x
     txt_rect.centery = player2_rect.bottom + 20
@@ -85,10 +85,6 @@ def draw_main_screen(screen):
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    a_button = pygame.image.load("src/assets/menu/a_button.png").convert_alpha()
-    b_button = pygame.image.load("src/assets/menu/b_button.png").convert_alpha()
-    y_button = pygame.image.load("src/assets/menu/y_button.png").convert_alpha()
-
     play = pygame.image.load("src/assets/menu/play.png").convert_alpha()
     options = pygame.image.load("src/assets/menu/options.png").convert_alpha()
     quit = pygame.image.load("src/assets/menu/quit.png").convert_alpha()
@@ -97,20 +93,35 @@ def draw_main_screen(screen):
     keyboard = pygame.image.load("src/assets/menu/keyboard.png").convert_alpha()
     controller = pygame.image.load("src/assets/menu/controller.png").convert_alpha()
 
+    bg = pygame.image.load("src/assets/menu/bg.png").convert_alpha()
+    bgbg = pygame.image.load("src/assets/menu/bgbg.png").convert_alpha()
+    logo = pygame.image.load("src/assets/menu/logo.png").convert_alpha()
+
     scale_factor = 5
+
+    bgbg = pygame.transform.scale(bgbg, (screen_width, screen_height))
+    logo = pygame.transform.scale(logo, (logo.get_width() * scale_factor, logo.get_height() * scale_factor))
+    bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor*2, bg.get_height() * scale_factor*2))
 
     play = pygame.transform.scale(play, (play.get_width() * scale_factor, play.get_height() * scale_factor))
     options = pygame.transform.scale(options, (options.get_width() * scale_factor, options.get_height() * scale_factor))
     quit = pygame.transform.scale(quit, (quit.get_width() * scale_factor, quit.get_height() * scale_factor))
 
-    play_rect = play.get_rect(center=(screen_width / 2, screen_height / 2 - 200))
-    options_rect = options.get_rect(center=(screen_width / 2, screen_height / 2 - 100))
-    quit_rect = quit.get_rect(center=(screen_width / 2, screen_height / 2))
+    play_rect = play.get_rect(center=(screen_width / 2, screen_height / 2 - 100))
+    options_rect = options.get_rect(center=(screen_width / 2, screen_height / 2))
+    quit_rect = quit.get_rect(center=(screen_width / 2, screen_height / 2 + 100))
 
-    start_with_rect = start_with.get_rect(center=(screen_width / 2, screen_height / 2 + screen_height / 4))
-    keyboard_rect = keyboard.get_rect(center=(screen_width / 2 - screen_height/4, screen_height - screen_height / 6))
-    controller_rect = controller.get_rect(center=(screen_width / 2 + screen_height / 4, screen_height - screen_height / 6))
+    start_with_rect = start_with.get_rect(center=(screen_width - screen_width + bg.get_width() / 2 + start_with.get_width()/2, screen_height / 2 - 100))
+    keyboard_rect = keyboard.get_rect(center=(screen_width - screen_width + bg.get_width() /2, screen_height/2))
+    controller_rect = controller.get_rect(center=(screen_width - screen_width + bg.get_width(), screen_height /2))
 
+    bg_pos = [screen_width - screen_width + bg.get_width() / 4.5, screen_height / 2 - 150]
+    bgbg_pos = [screen_width / 2 - bgbg.get_width() / 2, screen_height / 2 - bgbg.get_height() / 2]
+    logo_pos = [screen_width / 2 - logo.get_width() / 2, screen_height / 2 - 2.6 * logo.get_height()]
+
+    screen.blit(bgbg, bgbg_pos)
+    screen.blit(logo, logo_pos)
+    screen.blit(bg, bg_pos)
 
     screen.blit(play, play_rect)
     screen.blit(options, options_rect)
@@ -120,11 +131,6 @@ def draw_main_screen(screen):
     screen.blit(keyboard, keyboard_rect)
     screen.blit(controller, controller_rect)
 
-    button_spacing = 20
-
-    screen.blit(a_button, (play_rect.right + button_spacing, play_rect.centery - a_button.get_height() / 2))
-    screen.blit(y_button, (options_rect.right + button_spacing, options_rect.centery - y_button.get_height() / 4))
-    screen.blit(b_button, (quit_rect.right + button_spacing, quit_rect.centery - b_button.get_height() / 4))
 
     pygame.display.flip()
 
@@ -138,7 +144,10 @@ def options_menu(screen):
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    clear_screen(screen, (0, 0, 0))
+    bgbg = pygame.image.load("src/assets/menu/bgbg.png").convert_alpha()
+    bgbg = pygame.transform.scale(bgbg, (screen_width, screen_height))
+    bgbg_pos = [screen_width / 2 - bgbg.get_width() / 2, screen_height / 2 - bgbg.get_height() / 2]
+    screen.blit(bgbg, bgbg_pos)
 
     wasd = pygame.image.load("src/assets/menu/wasd.png").convert_alpha()
     ijkl = pygame.image.load("src/assets/menu/ijkl.png").convert_alpha()
@@ -213,13 +222,11 @@ def main_menu():
                         keyboard = False
 
                 elif current_menu == "options":
-                    clear_screen(screen, (0, 0, 0))
                     play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(screen)
                     current_menu = "main"
 
                 elif current_menu == "death":
 
-                    clear_screen(screen, (0, 0, 0))
                     play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(
                         screen)
                     current_menu = "main"
