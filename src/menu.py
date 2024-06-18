@@ -9,6 +9,8 @@ def file_reader(name, start):
     with open(name, 'r') as file:
 
         line = file.readline()
+        line = float(line)
+        print(line)
 
     now = time.perf_counter()
 
@@ -16,8 +18,11 @@ def file_reader(name, start):
 
 
     with open(name, 'w') as file:
-        if float(line) <= float(now):
+        if line > now:
+            print('sdafsdafs')
             file.write(str(now))
+        else:
+            file.write(str(line))
 
     return line, now
 
@@ -31,7 +36,7 @@ def text_objects(text):
 def death_screen(screen, looser_num, done, rekord, currenttime, start):
 
     if not done:
-        rekord, currenttime = file_reader('src/assets/highscore.csv', start)
+        rekord, currenttime = file_reader('assets/highscore.csv', start)
         currenttime = float(currenttime)
 
 
@@ -52,9 +57,9 @@ def death_screen(screen, looser_num, done, rekord, currenttime, start):
 
 
 
-    bg = pygame.image.load("src/assets/menu/bg.png").convert_alpha()
-    player1 = pygame.image.load("src/assets/menu/player1.png").convert_alpha()
-    player2 = pygame.image.load("src/assets/menu/player2.png").convert_alpha()
+    bg = pygame.image.load("assets/menu/bg.png").convert_alpha()
+    player1 = pygame.image.load("assets/menu/player1.png").convert_alpha()
+    player2 = pygame.image.load("assets/menu/player2.png").convert_alpha()
 
     scale_factor = 5
 
@@ -85,17 +90,17 @@ def draw_main_screen(screen):
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    play = pygame.image.load("src/assets/menu/play.png").convert_alpha()
-    options = pygame.image.load("src/assets/menu/options.png").convert_alpha()
-    quit = pygame.image.load("src/assets/menu/quit.png").convert_alpha()
+    play = pygame.image.load("assets/menu/play.png").convert_alpha()
+    options = pygame.image.load("assets/menu/options.png").convert_alpha()
+    quit = pygame.image.load("assets/menu/quit.png").convert_alpha()
 
-    start_with = pygame.image.load("src/assets/menu/start with.png").convert_alpha()
-    keyboard = pygame.image.load("src/assets/menu/keyboard.png").convert_alpha()
-    controller = pygame.image.load("src/assets/menu/controller.png").convert_alpha()
+    start_with = pygame.image.load("assets/menu/start with.png").convert_alpha()
+    keyboard = pygame.image.load("assets/menu/keyboard.png").convert_alpha()
+    controller = pygame.image.load("assets/menu/controller.png").convert_alpha()
 
-    bg = pygame.image.load("src/assets/menu/bg.png").convert_alpha()
-    bgbg = pygame.image.load("src/assets/menu/bgbg.png").convert_alpha()
-    logo = pygame.image.load("src/assets/menu/logo.png").convert_alpha()
+    bg = pygame.image.load("assets/menu/bg.png").convert_alpha()
+    bgbg = pygame.image.load("assets/menu/bgbg.png").convert_alpha()
+    logo = pygame.image.load("assets/menu/logo.png").convert_alpha()
 
     scale_factor = 5
 
@@ -144,17 +149,17 @@ def options_menu(screen):
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    bgbg = pygame.image.load("src/assets/menu/bgbg.png").convert_alpha()
+    bgbg = pygame.image.load("assets/menu/bgbg.png").convert_alpha()
     bgbg = pygame.transform.scale(bgbg, (screen_width, screen_height))
     bgbg_pos = [screen_width / 2 - bgbg.get_width() / 2, screen_height / 2 - bgbg.get_height() / 2]
     screen.blit(bgbg, bgbg_pos)
 
-    wasd = pygame.image.load("src/assets/menu/wasd.png").convert_alpha()
-    ijkl = pygame.image.load("src/assets/menu/ijkl.png").convert_alpha()
-    moovement = pygame.image.load("src/assets/menu/movement.png").convert_alpha()
-    llll = pygame.image.load("src/assets/menu/llll.png").convert_alpha()
-    abxy = pygame.image.load("src/assets/menu/abxy.png").convert_alpha()
-    bg = pygame.image.load("src/assets/menu/bg.png").convert_alpha()
+    wasd = pygame.image.load("assets/menu/wasd.png").convert_alpha()
+    ijkl = pygame.image.load("assets/menu/ijkl.png").convert_alpha()
+    moovement = pygame.image.load("assets/menu/movement.png").convert_alpha()
+    llll = pygame.image.load("assets/menu/llll.png").convert_alpha()
+    abxy = pygame.image.load("assets/menu/abxy.png").convert_alpha()
+    bg = pygame.image.load("assets/menu/bg.png").convert_alpha()
 
     scale_factor = 5
 

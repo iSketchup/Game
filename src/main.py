@@ -15,7 +15,7 @@ def main():
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    map_list, map_data = map.map_lister('src/assets/map/tilesets_and_maps/newtilemap/mapabc.tmx')
+    map_list, map_data = map.map_lister('assets/map/tilesets_and_maps/newtilemap/mapabc.tmx')
     measurew = map_data.tilewidth
     measureh = map_data.tileheight
     upsizefaktorw, upsizefaktorh = screen_width / (45 * measurew), screen_height / (25 * measureh)
