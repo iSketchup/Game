@@ -95,6 +95,7 @@ def draw_main_screen(screen):
     quit = pygame.image.load("assets/menu/quit.png").convert_alpha()
 
     start_with = pygame.image.load("assets/menu/start with.png").convert_alpha()
+
     keyboard = pygame.image.load("assets/menu/keyboard.png").convert_alpha()
     controller = pygame.image.load("assets/menu/controller.png").convert_alpha()
 
@@ -139,7 +140,7 @@ def draw_main_screen(screen):
 
     pygame.display.flip()
 
-    return play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect
+    return play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect, bg
 
 def clear_screen(screen, color):
     screen.fill(color)
@@ -172,10 +173,10 @@ def options_menu(screen):
     bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
 
     moovement_pos = [screen_width / 2 - moovement.get_width() / 2, 0 + moovement.get_height()]
-    wasd_pos = [0 + 1.5 * wasd.get_width(), screen_height / 2 - wasd.get_height()]
-    ijkl_pos = [0 + 1.5 * ijkl.get_width(), screen_height / 2 - ijkl.get_height() + ijkl.get_height()]
-    llll_pos = [screen_width - 2.5 * wasd.get_width(), screen_height / 2 - wasd.get_height()]
-    abxy_pos = [screen_width - 2.5 * wasd.get_width(), screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
+    wasd_pos = [screen_width - bg.get_width() - wasd.get_width(), screen_height / 2 - wasd.get_height()]
+    ijkl_pos = [screen_width - bg.get_width() - ijkl.get_width(), screen_height / 2 - ijkl.get_height() + ijkl.get_height()]
+    llll_pos = [screen_width - bg.get_width() + llll.get_width(), screen_height / 2 - wasd.get_height()]
+    abxy_pos = [screen_width - bg.get_width() + abxy.get_width(), screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
     bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
 
     screen.blit(bg, bg_pos)
@@ -197,7 +198,7 @@ def main_menu():
 
     current_menu = "main"
 
-    play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(screen)
+    play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect, bg = draw_main_screen(screen)
 
     running = True
     while running:
@@ -221,18 +222,23 @@ def main_menu():
                         sys.exit()
 
                     elif keyboard_rect.collidepoint(mouse_pos):
+                        play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect, bg = draw_main_screen(screen)
+                        keyboard_selected = pygame.image.load("assets/menu/keyboard_selected.png").convert_alpha()
+                        keyboard_rect_selected = keyboard_selected.get_rect(center=(screen.get_width() - screen.get_width() + bg.get_width() /2, screen.get_height()/2 + 10))
+                        screen.blit(keyboard_selected, keyboard_rect_selected)
+
                         keyboard = True
 
                     elif controller_rect.collidepoint(mouse_pos):
                         keyboard = False
 
                 elif current_menu == "options":
-                    play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(screen)
+                    play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect, bg = draw_main_screen(screen)
                     current_menu = "main"
 
                 elif current_menu == "death":
 
-                    play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect = draw_main_screen(
+                    play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect, bg = draw_main_screen(
                         screen)
                     current_menu = "main"
 
