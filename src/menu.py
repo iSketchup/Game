@@ -172,11 +172,11 @@ def options_menu(screen):
 
     bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
 
-    moovement_pos = [screen_width / 2 - moovement.get_width() / 2, 0 + moovement.get_height()]
-    wasd_pos = [screen_width - bg.get_width() - wasd.get_width(), screen_height / 2 - wasd.get_height()]
-    ijkl_pos = [screen_width - bg.get_width() - ijkl.get_width(), screen_height / 2 - ijkl.get_height() + ijkl.get_height()]
-    llll_pos = [screen_width - bg.get_width() + llll.get_width(), screen_height / 2 - wasd.get_height()]
-    abxy_pos = [screen_width - bg.get_width() + abxy.get_width(), screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
+    moovement_pos = [screen_width / 2 - moovement.get_width() / 2, screen_height - screen_height + 2 * moovement.get_height()]
+    wasd_pos = [screen_width - screen_width + bg.get_width() - bg.get_width() / 2 , screen_height / 2 - wasd.get_height()]
+    ijkl_pos = [screen_width - screen_width + bg.get_width() - bg.get_width() / 2 , screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
+    llll_pos = [screen_width - screen_width + bg.get_width() + llll.get_width() / 2 + llll.get_width() / 10, screen_height / 2 - wasd.get_height()]
+    abxy_pos = [screen_width - screen_width + bg.get_width() + llll.get_width() / 2 + llll.get_width() / 10, screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
     bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
 
     screen.blit(bg, bg_pos)
@@ -224,12 +224,18 @@ def main_menu():
                     elif keyboard_rect.collidepoint(mouse_pos):
                         play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect, bg = draw_main_screen(screen)
                         keyboard_selected = pygame.image.load("assets/menu/keyboard_selected.png").convert_alpha()
-                        keyboard_rect_selected = keyboard_selected.get_rect(center=(screen.get_width() - screen.get_width() + bg.get_width() /2, screen.get_height()/2 + 10))
+                        keyboard_rect_selected = keyboard_selected.get_rect(center=(screen.get_width() - screen.get_width() + bg.get_width() /2 - 2, screen.get_height()/2 + 10))
                         screen.blit(keyboard_selected, keyboard_rect_selected)
 
                         keyboard = True
 
                     elif controller_rect.collidepoint(mouse_pos):
+
+                        play_rect, options_rect, quit_rect, start_with_rect, keyboard_rect, controller_rect, bg = draw_main_screen(screen)
+                        controller_selected = pygame.image.load("assets/menu/controller_selected.png").convert_alpha()
+                        controller_rect_selected = controller_selected.get_rect(center=(screen.get_width() - screen.get_width() + bg.get_width() / 2 + 2 * controller_selected.get_width() - 1, screen.get_height() / 2 + 6))
+                        screen.blit(controller_selected, controller_rect_selected)
+
                         keyboard = False
 
                 elif current_menu == "options":
