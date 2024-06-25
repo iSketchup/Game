@@ -19,5 +19,5 @@ class Spritesheet(pygame.sprite.Sprite):
 		for row in range(self.row_count):
 			for col in range(self.col_count):
 				image = self.image.subsurface(pygame.Rect(col * self.width, row * self.height, self.width, self.height))
-				image = pygame.transform.scale(image, (self.width * 2, self.height*2))
+				image = pygame.transform.scale(image, (self.width * 4, self.height*4))
 				self.frame_list.append(image)

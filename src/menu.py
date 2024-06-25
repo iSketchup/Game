@@ -35,6 +35,13 @@ def text_objects(text):
 
 def death_screen(screen, looser_num, done, rekord, currenttime, start):
 
+
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                print('jfchvg')
+                break
+
     if not done:
         rekord, currenttime = file_reader('assets/highscore.csv', start)
         currenttime = float(currenttime)
@@ -172,11 +179,12 @@ def options_menu(screen):
 
     bg = pygame.transform.scale(bg, (bg.get_width() * scale_factor * 5, bg.get_height() * scale_factor * 5))
 
-    moovement_pos = [screen_width / 2 - moovement.get_width() / 2, screen_height - screen_height + 2 * moovement.get_height()]
-    wasd_pos = [screen_width - screen_width + bg.get_width() - bg.get_width() / 2 , screen_height / 2 - wasd.get_height()]
-    ijkl_pos = [screen_width - screen_width + bg.get_width() - bg.get_width() / 2 , screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
-    llll_pos = [screen_width - screen_width + bg.get_width() + llll.get_width() / 2 + llll.get_width() / 10, screen_height / 2 - wasd.get_height()]
-    abxy_pos = [screen_width - screen_width + bg.get_width() + llll.get_width() / 2 + llll.get_width() / 10, screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
+    moovement_pos = [screen_width / 2 - moovement.get_width() / 2, 2 * moovement.get_height()]
+    wasd_pos = [bg.get_width() - bg.get_width() / 2 , screen_height / 2 - wasd.get_height()]
+    ijkl_pos = [bg.get_width() - bg.get_width() / 2 , screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
+    llll_pos = [bg.get_width() + llll.get_width() / 2 + llll.get_width() / 10, screen_height / 2 - wasd.get_height()]
+    abxy_pos = [bg.get_width() + llll.get_width() / 2 + llll.get_width() / 10, screen_height / 2 - ijkl.get_height() + ijkl.get_height() + ijkl.get_height() / 2]
+
     bg_pos = [screen_width / 2 - bg.get_width() / 2, screen_height / 2 - bg.get_height() / 2]
 
     screen.blit(bg, bg_pos)
@@ -204,6 +212,7 @@ def main_menu():
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.quit()
                 running = False
 
             elif event.type == pygame.MOUSEBUTTONDOWN:

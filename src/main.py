@@ -51,10 +51,10 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-            elif event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYDOWN:'''
                 if event.key == pygame.K_ESCAPE:
                     menu.main_menu()
-
+                '''
             if event.type == pygame.JOYDEVICEADDED and not keyboard:
                 stick = Player(event.device_index, floor, tilesize, controllers, screen, upsizefaktorw,
                                keyboard)
@@ -69,6 +69,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-
+    while True:
+        main()
+        menu.main_menu()
 
