@@ -10,7 +10,6 @@ def file_reader(name, start):
 
         line = file.readline()
         line = float(line)
-        print(line)
 
     now = time.perf_counter()
 
@@ -19,7 +18,6 @@ def file_reader(name, start):
 
     with open(name, 'w') as file:
         if line > now:
-            print('sdafsdafs')
             file.write(str(now))
         else:
             file.write(str(line))
@@ -35,12 +33,6 @@ def text_objects(text):
 
 def death_screen(screen, looser_num, done, rekord, currenttime, start):
 
-
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                print('jfchvg')
-                break
 
     if not done:
         rekord, currenttime = file_reader('assets/highscore.csv', start)

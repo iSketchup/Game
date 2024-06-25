@@ -201,19 +201,16 @@ class Player():
                 self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                           self.player_rect.width, self.player_rect.height)
                 self.current_state = self.attack
-                print(f"Hitbox created: {self.hitbox}")  # Debugging output
         elif self.controller_num == 1:
             if self.pressed_keys[pygame.K_c]:
                 self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                           self.player_rect.width, self.player_rect.height)
                 self.current_state = self.attack
-                print(f"Hitbox created: {self.hitbox}")  # Debugging output
         else:
             if self.pressed_keys[pygame.K_n]:
                 self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                           self.player_rect.width, self.player_rect.height)
                 self.current_state = self.attack
-                print(f"Hitbox created: {self.hitbox}")  # Debugging output
 
     def being_hit(self):
         if self.controller_num == 1:

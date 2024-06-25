@@ -6,7 +6,7 @@ import menu
 
 
 
-def main():
+def main(keyboard):
 
     pygame.init()
 
@@ -33,7 +33,7 @@ def main():
     
     tilesize = 16
 
-    keyboard = menu.main_menu()
+
 
     if keyboard:
         for i in range(2):
@@ -51,10 +51,10 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-            elif event.type == pygame.KEYDOWN:'''
+            elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    menu.main_menu()
-                '''
+                    running = False
+
             if event.type == pygame.JOYDEVICEADDED and not keyboard:
                 stick = Player(event.device_index, floor, tilesize, controllers, screen, upsizefaktorw,
                                keyboard)
@@ -70,6 +70,8 @@ def main():
 
 if __name__ == '__main__':
     while True:
-        main()
-        menu.main_menu()
+        keyboard = menu.main_menu()
+        main(keyboard)
+
+
 
