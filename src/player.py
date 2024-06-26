@@ -150,11 +150,10 @@ class Player():
         self.x_movement()
         self.jump()
 
-        # Apply movement and velocity to position
         self.player_rect.move_ip(self.move.x, self.velocity.y)
         self.check_ground_collision()
         self.hitting()
-        self.being_hit()  # Make sure to check for being hit
+        self.being_hit()
 
         self.displayer()
 
@@ -198,6 +197,7 @@ class Player():
 
         if not self.keyboard:
             if self.joystick.get_button(3):
+
                 self.hitbox = pygame.Rect(self.player_rect.x + hit_direction.x, self.player_rect.y + hit_direction.y,
                                           self.player_rect.width, self.player_rect.height)
                 self.current_state = self.attack
